@@ -5,8 +5,10 @@
     <artifactId>cloud-publishing</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    
     <modules>
         <module>cloud-publishing-web</module>
+        <module>cloud-publishing-common</module>
     </modules>
     
     <properties>
@@ -22,6 +24,12 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
@@ -40,6 +48,7 @@
     </dependencies>
     
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             
             <plugin>
@@ -63,6 +72,12 @@
                         </goals>
                     </execution>
                 </executions>-->
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>3.0.0-M1</version>
             </plugin>
         
         </plugins>
