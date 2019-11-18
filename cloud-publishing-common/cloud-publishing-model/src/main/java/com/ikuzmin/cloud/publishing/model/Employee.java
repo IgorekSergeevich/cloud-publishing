@@ -18,40 +18,40 @@ public class Employee implements Serializable {
   
   /*@Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column
+  @Column*/
   private Integer id;
   
-  @Column(nullable = false)
+  //@Column(nullable = false)
   private String firstName;
   
-  @Column(nullable = false)
+  //@Column(nullable = false)
   private String lastName;
   
-  @Column
+  //@Column
   private String middleName;
   
-  @Column(nullable = false, unique = true)
+  //@Column(nullable = false, unique = true)
   private String email;
   
-  @Column(nullable = false)
+  //@Column(nullable = false)
   private String password;
   
-  @Column(nullable = false)
+  //@Column(nullable = false)
   private Character sex;
   
-  @Column(nullable = false)
+  //@Column(nullable = false)
   private Short birthYear;
   
-  @Column(nullable = false)
+  //@Column(nullable = false)
   private String address;
   
-  @Column(nullable = false)
+  //@Column(nullable = false)
   private Character type;
   
-  @Column(nullable = true)
+  //@Column(nullable = true)
   private Integer educationId;
   
-  @Column(nullable = false)
-  private Boolean chiefEditor;*/
+  //@Column(nullable = false)
+  private Boolean chiefEditor;
   
 }
