@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     
     <modules>
-      <module>employee-rest-service</module>
+        <module>employee-rest-service</module>
     </modules>
     
     <dependencies>
@@ -18,6 +18,12 @@
             <groupId>com.ikuzmin</groupId>
             <artifactId>cloud-publishing-dao</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.10.1</version>
         </dependency>
     </dependencies>
             

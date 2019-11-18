@@ -11,7 +11,17 @@
     
     <modules>
         <module>cloud-publishing-dao</module>
+        <module>cloud-publishing-model</module>
     </modules>
+    
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+    </dependencies>
     
     <build>
         <plugins>
