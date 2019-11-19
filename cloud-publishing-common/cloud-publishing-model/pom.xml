@@ -9,4 +9,12 @@
     <artifactId>cloud-publishing-model</artifactId>
     <packaging>jar</packaging>
     
+    <dependencies>
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+            <version>2.2</version>
+        </dependency>
+    </dependencies>
+    
 </project>

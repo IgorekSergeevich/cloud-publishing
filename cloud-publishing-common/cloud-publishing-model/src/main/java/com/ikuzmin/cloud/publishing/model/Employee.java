@@ -1,11 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ikuzmin.cloud.publishing.model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import lombok.Data;
 
 /**
@@ -13,45 +13,45 @@ import lombok.Data;
  * @author Igor Kuzmin
  */
 @Data
-//@Entity
+@Entity
 public class Employee implements Serializable {
   
-  /*@Id
+  @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column*/
+  @Column
   private Integer id;
   
-  //@Column(nullable = false)
+  @Column(nullable = false)
   private String firstName;
   
-  //@Column(nullable = false)
+  @Column(nullable = false)
   private String lastName;
   
-  //@Column
+  @Column
   private String middleName;
   
-  //@Column(nullable = false, unique = true)
+  @Column(nullable = false, unique = true)
   private String email;
   
-  //@Column(nullable = false)
+  @Column(nullable = false)
   private String password;
   
-  //@Column(nullable = false)
+  @Column(nullable = false)
   private Character sex;
   
-  //@Column(nullable = false)
+  @Column(nullable = false)
   private Short birthYear;
   
-  //@Column(nullable = false)
+  @Column(nullable = false)
   private String address;
   
-  //@Column(nullable = false)
+  @Column(nullable = false)
   private Character type;
   
-  //@Column(nullable = true)
+  @Column(nullable = true)
   private Integer educationId;
   
-  //@Column(nullable = false)
+  @Column(nullable = false)
   private Boolean chiefEditor;
   
 }
