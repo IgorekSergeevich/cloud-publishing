@@ -12,9 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"com.ikuzmin.employee.rest.rest", "com.ikuzmin.employee.rest.services"})
+@ComponentScan("com.ikuzmin.employee.rest.rest")
 public class EmployeeDispatcherServletContext implements WebMvcConfigurer {
-  
-  
   
 }

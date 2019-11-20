@@ -32,7 +32,7 @@ public class AbstractPublishingDataBaseContext {
   public LocalSessionFactoryBean sessionFactoryBean() {
     LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
     sessionFactoryBean.setDataSource(basicDataSource());
-    sessionFactoryBean.setPackagesToScan("com.ikuzmin.cloud.publishing.entities");
+    sessionFactoryBean.setPackagesToScan("com.ikuzmin.cloud.publishing.model");
     sessionFactoryBean.setHibernateProperties(hibernateProperties());
     return sessionFactoryBean;
   }

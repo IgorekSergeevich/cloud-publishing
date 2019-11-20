@@ -1,6 +1,7 @@
 package com.ikuzmin.employee.rest.configs;
 
 import com.ikuzmin.employee.rest.configs.spring.EmployeeDispatcherServletContext;
+import com.ikuzmin.employee.rest.configs.spring.EmplyeeServiceRootContext;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
@@ -25,8 +26,9 @@ public class EmployeeRestServiceInitializer extends AbstractDispatcherServletIni
 
   @Override
   protected WebApplicationContext createRootApplicationContext() {
-    return null;
+    AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
+    rootContext.register(EmplyeeServiceRootContext.class);
+    return rootContext;
   }
 
- 
 }

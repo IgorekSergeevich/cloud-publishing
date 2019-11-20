@@ -16,6 +16,7 @@ CREATE TABLE `topic` (
 
 CREATE TABLE `employee` (
   `id`           int          NOT NULL AUTO_INCREMENT,
+  `login`       varchar(255) NOT NULL UNIQUE, 
   `first_name`   varchar(255) NOT NULL,
   `last_name`    varchar(255) NOT NULL,
   `middle_name`  varchar(255),
