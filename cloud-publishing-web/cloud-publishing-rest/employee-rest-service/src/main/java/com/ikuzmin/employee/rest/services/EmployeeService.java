@@ -1,4 +1,4 @@
-package com.ikuzmin.employee.rest.service;
+package com.ikuzmin.employee.rest.services;
 
 import com.ikuzmin.cloud.publishing.model.Employee;
 
@@ -9,5 +9,7 @@ import com.ikuzmin.cloud.publishing.model.Employee;
 public interface EmployeeService {
   
   Employee getEmployeeById(Integer id);
+  
+  Employee getEmployeeByLogin(String login);
   
 }

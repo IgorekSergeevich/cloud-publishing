@@ -10,4 +10,6 @@ public interface EmployeeDao {
   
   Employee getEmployeeById(Integer id);
   
+  Employee getEmployeeByLogin(String login);
+  
 }
