@@ -18,12 +18,12 @@ public class EmployeeRestService {
   @Autowired
   private EmployeeService employeeService;
   
-  @GetMapping("/employee/{id}")
+  /*@GetMapping("/employee/{id}")
   public Employee getEmployeeById(@PathVariable Integer id) {
     return employeeService.getEmployeeById(id);
-  }
+  }*/
   
-  @GetMapping("/employee/{login}")
+  @GetMapping("/employees/{login}")
   public Employee getEmployeeById(@PathVariable String login) {
     return employeeService.getEmployeeByLogin(login);
   }

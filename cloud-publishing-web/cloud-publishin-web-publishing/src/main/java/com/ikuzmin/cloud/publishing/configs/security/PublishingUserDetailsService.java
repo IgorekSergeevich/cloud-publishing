@@ -1,9 +1,9 @@
 package com.ikuzmin.cloud.publishing.configs.security;
 
-import com.ikuzmin.cloud.publishing.dao.EmployeeDao;
-import com.ikuzmin.cloud.publishing.entitys.Employee;
-import java.util.Optional;
+import com.ikuzmin.cloud.publishing.model.Employee;
+import com.ikuzmin.cloud.publishing.rest.client.EmployeeRestClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,13 +18,14 @@ import org.springframework.stereotype.Service;
 public class PublishingUserDetailsService implements UserDetailsService {
   
   @Autowired
-  private EmployeeDao employeeDao;
+  private EmployeeRestClient employeeRestClient;
   
   @Override
-  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    Optional<Employee> emOptional = employeeDao.getEmployeeByEmail(email);
-    Employee employee = emOptional
-      .orElseThrow(() -> new UsernameNotFoundException("Employee not found"));
+  public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+    Employee employee = employeeRestClient.getEmployeeByLogin(login);
+    if (employee == null) {
+      throw new UsernameNotFoundException("Employee not found");
+    }
     return new PublishingUserDetails(employee);
   }
 
