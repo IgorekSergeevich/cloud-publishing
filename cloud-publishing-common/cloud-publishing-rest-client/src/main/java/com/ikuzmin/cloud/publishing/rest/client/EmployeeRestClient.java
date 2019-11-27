@@ -16,7 +16,7 @@ public class EmployeeRestClient {
   }
   
   public Employee getEmployeeByLogin(String login) {
-    return restTemplate.getForObject("http://localhost:8080/employee-rest-service/employees/{login}", Employee.class, login);
+    return restTemplate.getForObject("http://localhost:8081/employee-rest-service/employees/{login}", Employee.class, login);
   }
   
 }
