@@ -1,22 +1,23 @@
 package com.ikuzmin.cloud.publishing.rest.client;
 
 import com.ikuzmin.cloud.publishing.model.Employee;
-import org.springframework.web.client.RestTemplate;
 
 /**
  *
  * @author Igor Kuzmin
  */
-public class EmployeeRestClient {
+public class EmployeeRestClient extends AbstractRestClient{
   
-  private RestTemplate restTemplate;
+  private String employeeByLogin;
   
-  public EmployeeRestClient(RestTemplate restTemplate) {
-    this.restTemplate = restTemplate;
+  @Override
+  public void setServiceUrl(String serviceUrl) {
+    super.setServiceUrl(serviceUrl);
+    employeeByLogin = this.serviceUrl + "/employees/{login}";
   }
   
   public Employee getEmployeeByLogin(String login) {
-    return restTemplate.getForObject("http://localhost:8081/employee-rest-service/employees/{login}", Employee.class, login);
+    return restTemplate.getForObject(employeeByLogin, Employee.class, login);
   }
   
 }
