@@ -2,7 +2,6 @@ package com.ikuzmin.cloud.publishing.configs.spring;
 
 import com.ikuzmin.cloud.publishing.rest.spring.RestClientContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,9 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  */
 @Configuration
 @Import({SpringSecurityConfig.class, RestClientContext.class})
-@ComponentScan("com.ikuzmin.cloud.publishing.dao")
 public class RootContextConfig {
- 
+  
   @Bean
   public BCryptPasswordEncoder bCryptPasswordEncoder() {
     return new BCryptPasswordEncoder();

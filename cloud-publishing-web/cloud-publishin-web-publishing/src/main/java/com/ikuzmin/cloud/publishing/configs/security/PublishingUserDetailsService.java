@@ -13,7 +13,8 @@ import org.springframework.stereotype.Service;
  * @author Igor Kuzmin
  */
 
-@Service
+@Deprecated
+//@Service
 public class PublishingUserDetailsService implements UserDetailsService {
   
   @Autowired
