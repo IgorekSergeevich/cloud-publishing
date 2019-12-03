@@ -1,6 +1,7 @@
 package com.ikuzmin.employee.rest.services;
 
 import com.ikuzmin.cloud.publishing.model.Employee;
+import java.util.Optional;
 
 /**
  *
@@ -10,6 +11,6 @@ public interface EmployeeService {
   
   Employee getEmployeeById(Integer id);
   
-  Employee getEmployeeByLogin(String login);
+  Optional<Employee> getEmployeeByLogin(String login);
   
 }

@@ -2,6 +2,7 @@ package com.ikuzmin.employee.rest.dao.impl;
 
 import com.ikuzmin.cloud.publishing.model.Employee;
 import com.ikuzmin.employee.rest.dao.EmployeeDao;
+import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -28,11 +29,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
   }
 
   @Override
-  public Employee getEmployeeByLogin(String login) {
+  public Optional<Employee> getEmployeeByLogin(String login) {
     Session session = sessionFactory.openSession();
     Query<Employee> query = session.createQuery("from Employee e where e.login = :login");
     query.setParameter("login", login);
-    Employee employee = query.getSingleResult();
+    Optional<Employee> employee = query.getResultStream().findFirst();
     session.close();
     return employee;
   }
