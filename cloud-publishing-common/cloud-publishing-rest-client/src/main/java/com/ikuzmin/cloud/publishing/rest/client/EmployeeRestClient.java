@@ -2,6 +2,7 @@ package com.ikuzmin.cloud.publishing.rest.client;
 
 import com.ikuzmin.cloud.publishing.model.Employee;
 import java.util.Optional;
+import org.springframework.http.ResponseEntity;
 
 /**
  *
@@ -17,8 +18,8 @@ public class EmployeeRestClient extends AbstractRestClient{
     employeeByLogin = this.serviceUrl + "/employees/{login}";
   }
   
-  public Optional<Employee> getEmployeeByLogin(String login) {
-    return restTemplate.getForObject(employeeByLogin, Optional.class, login);
+  public ResponseEntity<Employee> getEmployeeByLogin(String login) {
+    return restTemplate.getForEntity(employeeByLogin, Employee.class, login);
   }
   
 }
