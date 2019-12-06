@@ -28,7 +28,7 @@ public class UserAuthenticationMapper {
   public UserDetails createUser(Authentication authentication) {
     ResponseEntity<Employee> employee = employeeRestClient.getEmployeeByLogin(authentication.getName());
     if (!employee.hasBody()) {
-      throw new UsernameNotFoundException("Employee not found in data base!");
+      throw new UsernameNotFoundException("Employee not found!");
     } else {
       String password = authentication.getCredentials().toString();
       if (!passwordEncoder.matches(password, employee.getBody().getPassword())) {

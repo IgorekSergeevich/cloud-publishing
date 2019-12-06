@@ -28,7 +28,7 @@ public class EmployeeRestService {
   public ResponseEntity<Employee> getEmployeeById(@PathVariable String login) {
     return employeeService.getEmployeeByLogin(login)
       .map(employee -> ResponseEntity.ok(employee))
-      .orElseGet(() -> ResponseEntity.notFound().build());
+      .orElseGet(() -> ResponseEntity.noContent().build());
   }
   
 }

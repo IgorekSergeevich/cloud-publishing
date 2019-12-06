@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author Igor Kuzmin
  */
 @Configuration
-@ComponentScan({"com.ikuzmin.employee.rest.services.impl", "com.ikuzmin.employee.rest.dao.impl"})
+@ComponentScan({"com.ikuzmin.employee.rest.services.impl", "com.ikuzmin.employee.rest.dao.impl", "com.ikuzmin.employee.rest.rest"})
 @EnableTransactionManagement
-public class EmplyeeServiceRootContext extends AbstractPublishingDataBaseContext {
+public class WebApplicationContext extends AbstractPublishingDataBaseContext {
   
 }
