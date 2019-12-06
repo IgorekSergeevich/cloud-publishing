@@ -38,7 +38,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             .formLogin().permitAll().loginPage("/login").failureUrl("/login?err")
             .loginProcessingUrl("/login/processing")
             .usernameParameter("login").passwordParameter("password")
-            .defaultSuccessUrl("/main", true);
+            .defaultSuccessUrl("/employees", true)
+            .and()
+            .logout().logoutUrl("/logout");
   }
   
   @Bean

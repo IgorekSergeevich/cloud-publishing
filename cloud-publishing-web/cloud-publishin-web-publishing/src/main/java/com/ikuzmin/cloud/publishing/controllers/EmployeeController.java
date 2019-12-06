@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Igor Kuzmin
  */
 @Controller
-@RequestMapping("/main")
-public class MainController {
+@RequestMapping("/employees")
+public class EmployeeController {
 
   @GetMapping
-  public String getLoginPage() {
-    return "main";
+  public String index() {
+    return "employee-page";
   }
 
 }
