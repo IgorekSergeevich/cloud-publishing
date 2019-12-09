@@ -3,35 +3,27 @@ package com.ikuzmin.cloud.publishing.configs.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Igor Kuzmin
  */
-@Profile("production")
-@Component
-public class CloudPublishingAuthenticationProvider implements AuthenticationProvider{
 
+@Profile("development")
+@Component
+public class FreePasswordAuthenticationProvider implements AuthenticationProvider {
+  
   @Autowired
   private UserAuthenticationMapper mapper;
-  
-  @Autowired
-  private BCryptPasswordEncoder passwordEncoder;
-  
+
   @Override
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-    PublishingUserDetails user = mapper.createUser(authentication);
-    String password = user.getEmployee().getPassword();
-    if (!passwordEncoder.matches(password, user.getPassword())) {
-        throw new BadCredentialsException("Invalid password for user!");
-    }
-    return new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
+    PublishingUserDetails userDetails = mapper.createUser(authentication);
+    return new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
   }
 
   @Override
