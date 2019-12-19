@@ -4,7 +4,6 @@ import com.ikuzmin.cloud.publishing.model.Employee;
 import com.ikuzmin.cloud.publishing.rest.client.EmployeeRestClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
@@ -14,13 +13,13 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class UserAuthenticationMapper {
+public class UserAuthenticationService {
   
   @Autowired
   private EmployeeRestClient employeeRestClient;
   
-  public PublishingUserDetails createUser(Authentication authentication) {
-    ResponseEntity<Employee> employee = employeeRestClient.getEmployeeByLogin(authentication.getName());
+  public PublishingUserDetails getUserByLogin(String login) {
+    ResponseEntity<Employee> employee = employeeRestClient.getEmployeeByLogin(login);
     if (!employee.hasBody()) {
       throw new UsernameNotFoundException("Employee not found!");
     } 

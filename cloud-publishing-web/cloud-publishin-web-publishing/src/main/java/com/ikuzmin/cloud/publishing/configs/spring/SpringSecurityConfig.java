@@ -15,7 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  *
  * @author Igor Kuzmin
  */
-@Configuration
 @EnableWebSecurity
 @ComponentScan("com.ikuzmin.cloud.publishing.configs.security")
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {

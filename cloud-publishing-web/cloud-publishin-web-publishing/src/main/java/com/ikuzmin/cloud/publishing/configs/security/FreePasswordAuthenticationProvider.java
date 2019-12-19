@@ -18,12 +18,13 @@ import org.springframework.stereotype.Component;
 public class FreePasswordAuthenticationProvider implements AuthenticationProvider {
   
   @Autowired
-  private UserAuthenticationMapper mapper;
+  private UserAuthenticationService userAuthenticationService;
 
   @Override
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-    PublishingUserDetails userDetails = mapper.createUser(authentication);
-    return new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
+    PublishingUserDetails userDetails = userAuthenticationService.getUserByLogin(authentication.getName());
+    return new UsernamePasswordAuthenticationToken(userDetails, null, 
+            userDetails.getAuthorities());
   }
 
   @Override

@@ -16,18 +16,18 @@ import org.springframework.stereotype.Component;
  */
 @Profile("production")
 @Component
-public class CloudPublishingAuthenticationProvider implements AuthenticationProvider{
+public class CloudPublishingAuthenticationProvider implements AuthenticationProvider {
 
   @Autowired
-  private UserAuthenticationMapper mapper;
+  private UserAuthenticationService userAuthenticationService;
   
   @Autowired
   private BCryptPasswordEncoder passwordEncoder;
   
   @Override
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-    PublishingUserDetails user = mapper.createUser(authentication);
-    String password = user.getEmployee().getPassword();
+    PublishingUserDetails user = userAuthenticationService.getUserByLogin(authentication.getName());
+    String password = authentication.getCredentials().toString();
     if (!passwordEncoder.matches(password, user.getPassword())) {
         throw new BadCredentialsException("Invalid password for user!");
     }
