@@ -18,13 +18,13 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Employee</a>
+                <a class="nav-link" href="<c:url value="/employees"/>">Employee</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Articles</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Magazines </a>
+                <a class="nav-link" href="#">Magazines</a>
             </li>
         </ul>
     </div>

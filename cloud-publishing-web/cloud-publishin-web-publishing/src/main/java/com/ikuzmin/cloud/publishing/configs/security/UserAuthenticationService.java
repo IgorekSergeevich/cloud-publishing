@@ -19,11 +19,11 @@ public class UserAuthenticationService {
   private EmployeeRestClient employeeRestClient;
   
   public PublishingUserDetails getUserByLogin(String login) {
-    ResponseEntity<Employee> employee = employeeRestClient.getEmployeeByLogin(login);
-    if (!employee.hasBody()) {
+    Employee employee = employeeRestClient.getEmployeeByLogin(login);
+    if (employee == null) {
       throw new UsernameNotFoundException("Employee not found!");
     } 
-    return new PublishingUserDetails(employee.getBody());
+    return new PublishingUserDetails(employee);
   }
   
 }

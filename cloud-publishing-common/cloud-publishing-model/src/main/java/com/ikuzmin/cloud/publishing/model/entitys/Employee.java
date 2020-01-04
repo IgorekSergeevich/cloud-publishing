@@ -1,6 +1,5 @@
 package com.ikuzmin.cloud.publishing.model.entitys;
 
-import com.ikuzmin.cloud.publishing.model.entitys.Education;
 import com.ikuzmin.cloud.publishing.model.roles.EmployeeType;
 import java.io.Serializable;
 import javax.persistence.Column;

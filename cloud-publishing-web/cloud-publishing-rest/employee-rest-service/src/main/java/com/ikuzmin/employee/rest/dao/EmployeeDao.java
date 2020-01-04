@@ -1,6 +1,7 @@
 package com.ikuzmin.employee.rest.dao;
 
 import com.ikuzmin.cloud.publishing.model.entitys.Employee;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -9,8 +10,8 @@ import java.util.Optional;
  */
 public interface EmployeeDao {
   
-  Employee getEmployeeById(Integer id);
-  
   Optional<Employee> getEmployeeByLogin(String login);
+  
+  List<Employee> getAllEmployee();
   
 }

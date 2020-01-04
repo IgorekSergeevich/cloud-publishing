@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.ikuzmin.cloud.publishing.controllers")
+@ComponentScan({"com.ikuzmin.cloud.publishing.controllers", "com.ikuzmin.cloud.publishing.services"})
 @Import(RestClientContext.class)
 public class WebMvcConfig implements WebMvcConfigurer {
 
