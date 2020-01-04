@@ -1,6 +1,6 @@
 package com.ikuzmin.cloud.publishing.rest.client;
 
-import com.ikuzmin.cloud.publishing.model.Employee;
+import com.ikuzmin.cloud.publishing.model.entitys.Employee;
 import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 

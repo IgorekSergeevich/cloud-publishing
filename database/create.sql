@@ -25,7 +25,7 @@ CREATE TABLE `employee` (
   `sex`          char(1)      NOT NULL,
   `birth_year`   smallint     NOT NULL,
   `address`      varchar(255) NOT NULL,
-  `type`         char(1)      NOT NULL,
+  `type`         varchar(20)  NOT NULL,
   `education_id` int,
   `chief_editor` bool         NOT NULL DEFAULT FALSE,
   PRIMARY KEY (`id`)

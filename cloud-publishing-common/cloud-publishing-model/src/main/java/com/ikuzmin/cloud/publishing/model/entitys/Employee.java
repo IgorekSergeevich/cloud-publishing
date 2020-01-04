@@ -1,8 +1,12 @@
-package com.ikuzmin.cloud.publishing.model;
+package com.ikuzmin.cloud.publishing.model.entitys;
 
+import com.ikuzmin.cloud.publishing.model.entitys.Education;
+import com.ikuzmin.cloud.publishing.model.roles.EmployeeType;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -50,7 +54,8 @@ public class Employee implements Serializable {
   private String address;
   
   @Column(nullable = false)
-  private Character type;
+  @Enumerated(EnumType.STRING)
+  private EmployeeType type;
   
   @ManyToOne
   @JoinColumn(name = "education_id", nullable = true)

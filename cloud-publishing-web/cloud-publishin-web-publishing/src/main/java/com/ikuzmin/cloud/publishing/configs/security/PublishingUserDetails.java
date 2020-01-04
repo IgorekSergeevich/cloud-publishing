@@ -1,6 +1,6 @@
 package com.ikuzmin.cloud.publishing.configs.security;
 
-import com.ikuzmin.cloud.publishing.model.Employee;
+import com.ikuzmin.cloud.publishing.model.entitys.Employee;
 import java.util.Collections;
 import lombok.Getter;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,7 +17,7 @@ public class PublishingUserDetails extends User {
   
   public PublishingUserDetails(Employee employee) {
     super(employee.getLogin(), employee.getPassword(), 
-            Collections.singletonList(new SimpleGrantedAuthority("ADMIN")));
+            Collections.singletonList(new SimpleGrantedAuthority(employee.getType().toString())));
     this.employee = employee;
   }
   

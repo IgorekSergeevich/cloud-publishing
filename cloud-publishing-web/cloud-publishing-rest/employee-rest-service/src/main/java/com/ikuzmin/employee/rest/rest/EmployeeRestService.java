@@ -1,6 +1,6 @@
 package com.ikuzmin.employee.rest.rest;
 
-import com.ikuzmin.cloud.publishing.model.Employee;
+import com.ikuzmin.cloud.publishing.model.entitys.Employee;
 import com.ikuzmin.employee.rest.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.ikuzmin.cloud.publishing.model;
+package com.ikuzmin.cloud.publishing.model.entitys;
 
 import java.io.Serializable;
 import java.util.List;

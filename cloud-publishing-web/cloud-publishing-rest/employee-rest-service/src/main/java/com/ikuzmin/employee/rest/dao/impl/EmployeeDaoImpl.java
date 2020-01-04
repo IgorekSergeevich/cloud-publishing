@@ -1,6 +1,6 @@
 package com.ikuzmin.employee.rest.dao.impl;
 
-import com.ikuzmin.cloud.publishing.model.Employee;
+import com.ikuzmin.cloud.publishing.model.entitys.Employee;
 import com.ikuzmin.employee.rest.dao.EmployeeDao;
 import java.util.Optional;
 import org.hibernate.Session;
