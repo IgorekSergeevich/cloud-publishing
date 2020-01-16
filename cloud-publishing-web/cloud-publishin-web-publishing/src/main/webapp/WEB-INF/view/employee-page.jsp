@@ -1,7 +1,7 @@
 <%-- 
     Document   : main
     Created on : 07.11.2019, 16:44:25
-    Author     : 21Vek
+    Author     : Igor Kuzmin
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

@@ -32,10 +32,12 @@ public class CloudPublishingKeycloackSecurityConfig extends KeycloakWebSecurityC
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
+    super.configure(http);
     http.authorizeRequests()
-            .antMatchers("/main").hasAnyAuthority("ADMIN")
             .antMatchers("/resources/**").permitAll()
-            .anyRequest().authenticated();
+            .anyRequest().authenticated()
+            .and()
+            .logout().logoutUrl("/logout");
   }
   
   @Override
