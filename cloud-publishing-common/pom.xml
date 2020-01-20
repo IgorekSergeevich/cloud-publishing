@@ -18,6 +18,7 @@
         <module>cloud-publishing-dao</module>
         <module>cloud-publishing-model</module>
         <module>cloud-publishing-rest-client</module>
+        <module>cloud-publishing-rest-service</module>
     </modules>
     
     <dependencyManagement>

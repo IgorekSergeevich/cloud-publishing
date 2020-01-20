@@ -31,15 +31,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
-            .antMatchers("/resources/**").permitAll()
-            .anyRequest().authenticated()
+              .antMatchers("/resources/**").permitAll()
+              .anyRequest().authenticated()
             .and()
-            .formLogin().permitAll().loginPage("/login").failureUrl("/login?err")
-            .loginProcessingUrl("/login/processing")
-            .usernameParameter("login").passwordParameter("password")
-            .defaultSuccessUrl("/employees")
+              .formLogin().permitAll().loginPage("/login").failureUrl("/login?err")
+              .loginProcessingUrl("/login/processing")
+              .usernameParameter("login").passwordParameter("password")
+              .defaultSuccessUrl("/employees")
             .and()
-            .logout().logoutUrl("/logout");
+              .logout().logoutUrl("/logout");
   }
   
   @Bean
