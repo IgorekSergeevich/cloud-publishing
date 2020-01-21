@@ -24,16 +24,16 @@ public class CommonRestServiceSecurityContext extends WebSecurityConfigurerAdapt
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-            .withUser(securitySettings.getCe().getUsername())
-            .password(securitySettings.getCe().getPassword())
+            .withUser(securitySettings.getJo().getUsername())
+            .password(securitySettings.getJo().getPassword())
             .roles()
             .and()
             .withUser(securitySettings.getEd().getUsername())
             .password(securitySettings.getEd().getPassword())
             .roles()
             .and()
-            .withUser(securitySettings.getJo().getUsername())
-            .password(securitySettings.getJo().getPassword())
+            .withUser(securitySettings.getCe().getUsername())
+            .password(securitySettings.getCe().getPassword())
             .roles();
   }
   
@@ -45,5 +45,5 @@ public class CommonRestServiceSecurityContext extends WebSecurityConfigurerAdapt
             .and()
               .httpBasic();    
   }
-   
+  
 }
