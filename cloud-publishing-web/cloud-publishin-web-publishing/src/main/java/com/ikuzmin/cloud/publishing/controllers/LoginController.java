@@ -20,7 +20,7 @@ public class LoginController {
 
   @GetMapping("/login")
   public String getLoginPage(@RequestParam(name = "err", required = false) String error) {
-    if (securityService.isAuthenticatedRequest()) {
+    if (securityService.getLoggedEmployee() != null) {
       return "redirect:" + INDEX_PAGE;
     }
     return "login";
