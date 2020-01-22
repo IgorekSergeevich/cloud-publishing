@@ -1,4 +1,4 @@
-package com.ikuzmin.cloud.publishing.rest.service.security;
+package com.ikuzmin.cloud.publishing.rest.service.security.authentication.basic;
 
 import com.ikuzmin.cloud.publishing.rest.service.security.settings.SecuritySettings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @EnableWebSecurity
 @EnableConfigurationProperties(SecuritySettings.class)
-public class CommonRestServiceSecurityContext extends WebSecurityConfigurerAdapter {
+public class CommonRestServiceSecurityContextBasicAuth extends WebSecurityConfigurerAdapter {
   
   @Autowired
   private SecuritySettings securitySettings;
