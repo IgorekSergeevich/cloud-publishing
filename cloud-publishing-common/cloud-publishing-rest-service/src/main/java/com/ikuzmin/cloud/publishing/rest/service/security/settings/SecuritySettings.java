@@ -22,10 +22,6 @@ public class SecuritySettings {
     private String password;
   }
   
-  private ServiceUser ed;
-  
-  private ServiceUser ce;
-  
-  private ServiceUser jo;
+  private ServiceUser app;
   
 }
