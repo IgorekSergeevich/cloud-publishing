@@ -1,4 +1,4 @@
-package com.ikuzmin.cloud.publishing.rest.service.security.settings;
+package com.ikuzmin.cloud.publishing.rest.service.security.authentication.basic.settings;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

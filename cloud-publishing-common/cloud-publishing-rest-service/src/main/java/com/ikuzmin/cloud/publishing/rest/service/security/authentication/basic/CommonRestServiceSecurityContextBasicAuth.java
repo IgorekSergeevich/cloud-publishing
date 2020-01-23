@@ -1,12 +1,13 @@
 package com.ikuzmin.cloud.publishing.rest.service.security.authentication.basic;
 
-import com.ikuzmin.cloud.publishing.rest.service.security.settings.SecuritySettings;
+import com.ikuzmin.cloud.publishing.rest.service.security.authentication.basic.settings.SecuritySettings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
@@ -35,7 +36,10 @@ public class CommonRestServiceSecurityContextBasicAuth extends WebSecurityConfig
               .authorizeRequests()
               .anyRequest().authenticated()
             .and()
-              .httpBasic();    
+              .httpBasic()
+            .and()
+              .sessionManagement()
+              .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
   }
   
 }

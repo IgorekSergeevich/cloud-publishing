@@ -26,7 +26,7 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
           IOException, ServletException {
     
     String header = request.getHeader("Authorization");
-    if (header == null && !header.startsWith("Bearer ")) {
+    if (header == null || !header.startsWith("Bearer ")) {
       throw new AuthenticationCredentialsNotFoundException("Header not found");
     }
     String token = header.substring(7);
