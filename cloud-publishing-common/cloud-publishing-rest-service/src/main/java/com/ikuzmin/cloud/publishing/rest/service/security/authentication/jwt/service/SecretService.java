@@ -16,8 +16,8 @@ public class SecretService {
   @Value("${secret.HS256}")
   private String secretHS256;
 
-  public byte[] getByte64Hs256Secret() {
-    return Base64.getEncoder().encode(secretHS256.getBytes());
+  public String getByte64Hs256Secret() {
+    return secretHS256;
   }
   
 }

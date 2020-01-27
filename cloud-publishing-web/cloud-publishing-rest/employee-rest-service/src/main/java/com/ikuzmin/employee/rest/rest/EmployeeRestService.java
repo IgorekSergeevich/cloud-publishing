@@ -1,12 +1,10 @@
 package com.ikuzmin.employee.rest.rest;
 
 import com.ikuzmin.cloud.publishing.model.entitys.Employee;
-import com.ikuzmin.cloud.publishing.rest.service.security.authentication.jwt.service.JwtTokenService;
 import com.ikuzmin.employee.rest.services.EmployeeService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
