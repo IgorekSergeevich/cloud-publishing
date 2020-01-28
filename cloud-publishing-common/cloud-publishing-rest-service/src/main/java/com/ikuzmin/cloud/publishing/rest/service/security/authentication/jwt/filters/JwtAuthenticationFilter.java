@@ -9,27 +9,30 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
-import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Igor Kuzmin
  */
 
-@Component
 public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
-  @Autowired
+  @Getter
+  @Setter
   private SecretService secretService;
   
-  
-  public JwtAuthenticationFilter() {
+  public JwtAuthenticationFilter(SecretService secretService, 
+          AuthenticationManager authenticationManager) {
     super("/**");
+    this.secretService = secretService;
+    this.setAuthenticationManager(authenticationManager);
   }
   
   @Override
