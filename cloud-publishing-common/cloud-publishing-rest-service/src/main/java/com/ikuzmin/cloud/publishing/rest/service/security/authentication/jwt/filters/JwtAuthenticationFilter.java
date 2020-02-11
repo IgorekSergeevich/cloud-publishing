@@ -46,8 +46,8 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
     }
     String token = header.substring(7);
     Claims claims = Jwts.parser().setSigningKey(secretService.getByte64Hs256Secret())
-            .parseClaimsJwt(token).getBody();
-    RestServiceUserDetails principal = new RestServiceUserDetails(claims.getSubject(), 
+            .parseClaimsJws(token).getBody();
+    RestServiceUserDetails principal = new RestServiceUserDetails(claims.getSubject(),
             null, null);
     Authentication authentication = new JwtToken(principal, principal.getAuthorities());
     return getAuthenticationManager().authenticate(authentication);

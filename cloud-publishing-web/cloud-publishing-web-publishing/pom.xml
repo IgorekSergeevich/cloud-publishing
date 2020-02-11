@@ -8,11 +8,11 @@
     </parent>
 
     <groupId>com.ikuzmin</groupId>
-    <artifactId>cloud-publishin-web-publishing</artifactId>
+    <artifactId>cloud-publishing-web-publishing</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>cloud-publishin-web-publishing</name>
+    <name>cloud-publishing-web-publishing</name>
     
     <dependencies>
         <dependency>

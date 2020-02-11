@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     
     <modules>
-      <module>cloud-publishin-web-publishing</module>
+      <module>cloud-publishing-web-publishing</module>
       <module>cloud-publishing-rest</module>
     </modules>
   

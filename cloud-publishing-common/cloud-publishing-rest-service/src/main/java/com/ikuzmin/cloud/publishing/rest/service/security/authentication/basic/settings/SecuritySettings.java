@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-@PropertySource("classpath:rest-service-users.properties")
+@PropertySource("classpath:basicauth-rest-service-users.properties")
 @ConfigurationProperties(prefix = "cloud.publishing.user")
 public class SecuritySettings {
   
