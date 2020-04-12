@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.ikuzmin</groupId>
         <artifactId>cloud-publishing-web</artifactId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.1</version>
     </parent>
     <artifactId>cloud-publishing-rest</artifactId>
     <packaging>pom</packaging>
@@ -17,7 +17,7 @@
         <dependency>
             <groupId>com.ikuzmin</groupId>
             <artifactId>cloud-publishing-dao</artifactId>
-            <version>1.1-SNAPSHOT</version>
+            <version>1.1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
@@ -28,13 +28,13 @@
         <dependency>
             <groupId>com.ikuzmin</groupId>
             <artifactId>cloud-publishing-model</artifactId>
-            <version>1.1-SNAPSHOT</version>
+            <version>1.1</version>
         </dependency>
         
         <dependency>
             <groupId>com.ikuzmin</groupId>
             <artifactId>cloud-publishing-rest-service</artifactId>
-            <version>1.1-SNAPSHOT</version>
+            <version>1.1</version>
         </dependency>
         
     </dependencies>
