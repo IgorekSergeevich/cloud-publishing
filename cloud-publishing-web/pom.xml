@@ -10,8 +10,8 @@
     <packaging>pom</packaging>
     
     <modules>
-      <module>cloud-publishing-web-publishing</module>
-      <module>cloud-publishing-rest</module>
+        <module>cloud-publishing-web-publishing</module>
+        <module>cloud-publishing-rest</module>
     </modules>
   
     <dependencies>
@@ -43,28 +43,93 @@
         </dependency>
     </dependencies>
   
+    <profiles>
+        <profile>
+            <id>docker</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>io.fabric8</groupId>
+                            <artifactId>docker-maven-plugin</artifactId>
+                            <version>0.27.2</version>
+                            <executions>
+                                <execution>
+                                    <id>Build docker container</id>
+                                    <phase>package</phase>
+                                    <goals>
+                                        <goal>build</goal>
+                                    </goals>
+                                </execution>
+                                <execution>
+                                    <id>Push docker container</id>
+                                    <phase>deploy</phase>
+                                    <goals>
+                                        <goal>push</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                            <configuration>
+                                <images>
+                                    <image>
+                                        <name>${project.artifactId}</name>
+                                        <build>
+                                            <from>openjdk:11-jre</from>
+                                            <tags>
+                                                <tag>latest</tag>
+                                                <tag>${project.version}</tag>
+                                            </tags>
+                                            <ports>
+                                                <port>8080</port>
+                                            </ports>
+                                            <cmd>
+                                                <shell>java $JAVA_OPTS -XX:+UseContainerSupport -Xms32M -jar /maven/${project.build.finalName}.war</shell>
+                                            </cmd>
+                                            <assembly>
+                                                <!-- This is a predefined assembly.xml that will only copy your final artifact to the Docker image -->
+                                                <descriptorRef>artifact</descriptorRef>
+                                            </assembly>
+                                        </build>
+                                    </image>
+                                </images>
+                            </configuration>
+                        </plugin>
+          
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
+    
     <build>
-          <plugins>                     
-              <plugin>
-                  <groupId>org.apache.tomcat.maven</groupId>
-                  <artifactId>tomcat7-maven-plugin</artifactId>
-                  <version>2.2</version>
-                  <configuration>  
+        <plugins>                     
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>  
                     <url>http://localhost:8080/manager/text</url>      
                     <username>admin</username>  
                     <password>admin</password>
                     <path>${context.path}</path>   
-                  </configuration>
-              </plugin>
-              <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-war-plugin</artifactId>
-                  <version>3.2.3</version>
-                  <configuration>
-                      <failOnMissingWebXml>false</failOnMissingWebXml>
-                  </configuration>
-              </plugin>
-          </plugins>
-      </build>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.3</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
   
 </project>
