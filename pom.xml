@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.ikuzmin</groupId>
     <artifactId>cloud-publishing</artifactId>
-    <version>%developement_version%-SNAPSHOT</version>
+    <version>%release_version%</version>
     <packaging>pom</packaging>
     
     <modules>
@@ -94,7 +94,7 @@
         <connection>scm:git:git@github.com:IgorekSergeevich/cloud-publishing.git</connection>
         <developerConnection>scm:git:git@github.com:IgorekSergeevich/cloud-publishing.git</developerConnection>
         <url>https://github.com/IgorekSergeevich/cloud-publishing.git</url>
-        <tag>HEAD</tag>
+        <tag>cloud-publishing-%release_version%</tag>
     </scm>
     
 </project>
