@@ -91,8 +91,8 @@
     </build>
     
     <scm>
-        <connection>scm:git:git@github.com:IgorekSergeevich/cloud-publishing.git</connection>
-        <developerConnection>scm:git:git@github.com:IgorekSergeevich/cloud-publishing.git</developerConnection>
+        <connection>scm:ssh:git@github.com:IgorekSergeevich/cloud-publishing.git</connection>
+        <developerConnection>scm:ssh:git@github.com:IgorekSergeevich/cloud-publishing.git</developerConnection>
         <url>https://github.com/IgorekSergeevich/cloud-publishing.git</url>
         <tag>cloud-publishing-1.2</tag>
     </scm>
