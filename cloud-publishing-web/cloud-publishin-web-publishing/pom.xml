@@ -4,12 +4,12 @@
     <parent>
         <artifactId>cloud-publishing-web</artifactId>
         <groupId>com.ikuzmin</groupId>
-        <version>1.2-SNAPSHOT</version>
+        <version>release_version</version>
     </parent>
 
     <groupId>com.ikuzmin</groupId>
     <artifactId>cloud-publishin-web-publishing</artifactId>
-    <version>1.2-SNAPSHOT</version>
+    <version>release_version</version>
     <packaging>war</packaging>
 
     <name>cloud-publishin-web-publishing</name>
@@ -34,7 +34,7 @@
         <dependency>
             <groupId>com.ikuzmin</groupId>
             <artifactId>cloud-publishing-rest-client</artifactId>
-            <version>1.2-SNAPSHOT</version>
+            <version>release_version</version>
         </dependency>
 
     </dependencies>
