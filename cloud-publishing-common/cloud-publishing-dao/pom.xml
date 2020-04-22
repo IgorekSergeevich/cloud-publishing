@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.ikuzmin</groupId>
         <artifactId>cloud-publishing-common</artifactId>
-        <version>%release_version%</version>
+        <version>%developement_version%-SNAPSHOT</version>
     </parent>
     <artifactId>cloud-publishing-dao</artifactId>
     <packaging>jar</packaging>
