@@ -4,7 +4,7 @@
     <parent>
         <artifactId>cloud-publishing-web</artifactId>
         <groupId>com.ikuzmin</groupId>
-        <version>%release_version%</version>
+        <version>%release_version%-SNAPSHOT</version>
     </parent>
 
     <groupId>com.ikuzmin</groupId>

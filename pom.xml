@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.ikuzmin</groupId>
     <artifactId>cloud-publishing</artifactId>
-    <version>%release_version%</version>
+    <version>%release_version%-SNAPSHOT</version>
     <packaging>pom</packaging>
     
     <modules>
