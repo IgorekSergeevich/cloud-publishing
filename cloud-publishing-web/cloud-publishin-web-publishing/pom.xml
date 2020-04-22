@@ -9,7 +9,7 @@
 
     <groupId>com.ikuzmin</groupId>
     <artifactId>cloud-publishin-web-publishing</artifactId>
-    <version>%release_version%</version>
+    <version>%release_version%-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>cloud-publishin-web-publishing</name>
