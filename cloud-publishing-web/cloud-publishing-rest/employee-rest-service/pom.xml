@@ -4,12 +4,12 @@
     <parent>
         <artifactId>cloud-publishing-rest</artifactId>
         <groupId>com.ikuzmin</groupId>
-        <version>2.0-SNAPSHOT</version>
+        <version>1.3</version>
     </parent>
 
     <groupId>com.ikuzmin</groupId>
     <artifactId>employee-rest-service</artifactId>
-    <version>2.0-SNAPSHOT</version>
+    <version>1.3</version>
     <packaging>war</packaging>
 
     <name>employee-rest-service</name>
