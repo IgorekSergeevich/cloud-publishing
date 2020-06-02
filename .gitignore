@@ -1,10 +1,3 @@
-/cloud-publishing-web/cloud-publishin-web-publishing/target/
-/cloud-publishing-web/target/
-/target/
-/cloud-publishing-common/cloud-publishing-dao/target/
-/cloud-publishing-common/target/
-/cloud-publishing-web/cloud-publishing-rest/employee-rest-service/target/
-/cloud-publishing-common/cloud-publishing-model/target/
-/cloud-publishing-web/cloud-publishin-web-publishing/nb-configuration.xml
-/cloud-publishing-common/cloud-publishing-rest-client/target/
-/cloud-publishing-common/cloud-publishing-rest-service/target/
+target
+nb-configuration.xml
+node_modules
