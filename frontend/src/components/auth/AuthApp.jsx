@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { loginAction } from "../../actions/auth-actions";
+import { loginAction } from "../../actions/auth-actions.ts";
 import { keycloak } from "./keycloak";
 import { LoginLayout } from "../layouts/LoginLayout.jsx";
 import { MainLayout } from "../layouts/MainLayout.jsx";
@@ -10,7 +10,7 @@ class AuthApp extends React.Component {
     componentDidMount() {
         keycloak.init({onLoad: "check-sso", promiseType: "native"})
             .then(isAuthorized => isAuthorized && 
-                this.props.loginAction({isAuthorized: true, name: keycloak.idTokenParsed.name}));
+                this.props.loginAction({userName: keycloak.idTokenParsed.name}));        
     }
 
     render() {
