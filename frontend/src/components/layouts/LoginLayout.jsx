@@ -1,5 +1,5 @@
 import React from "react";
-import { keycloak } from "../auth/keycloak";
+import { keycloak } from "../../auth/keycloak";
 
 export const LoginLayout = props => {
     return (

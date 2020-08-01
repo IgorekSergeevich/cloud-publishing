@@ -1,15 +1,15 @@
 import * as actions from "./action-types.js";
-import { UserPrincipalType } from "../redux/reducers/auth-reducer";
 
 export type AuthUserActionType = {
     type: typeof actions.LOGIN_USER | typeof actions.LOGOUT_USER,
-    userPrincipal?: UserPrincipalType
+    isStartLogin?: string
+    userName?: string
 };
 
-export function loginAction(userPrincipal: UserPrincipalType): AuthUserActionType {
+export function loginAction(userName: string): AuthUserActionType {
     return {
         type: actions.LOGIN_USER,
-        userPrincipal: userPrincipal
+        userName
     };
 }
 

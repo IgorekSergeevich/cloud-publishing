@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.ikuzmin</groupId>
         <artifactId>cloud-publishing</artifactId>
-        <version>2.0-SNAPSHOT</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>cloud-publishing-common</artifactId>
     <packaging>pom</packaging>
@@ -17,8 +17,6 @@
     <modules>
         <module>cloud-publishing-dao</module>
         <module>cloud-publishing-model</module>
-        <module>cloud-publishing-rest-client</module>
-        <module>cloud-publishing-rest-service</module>
     </modules>
     
     <dependencyManagement>
@@ -36,15 +34,5 @@
             </dependency>           
         </dependencies>    
     </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
-            </plugin>
-        </plugins>
-    </build>
     
 </project>

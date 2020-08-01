@@ -1,13 +1,22 @@
 
 //const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     devtool: 'source-map',
-    entry: "./src/app.jsx",
+    entry: "./src/index.jsx",
     output: {
         path: __dirname + "/dist",
-        filename: "index.js"
+        filename: "index.js",
+        publicPath: "/public"
     },
+    plugins: [
+        new CopyPlugin({
+            patterns: [
+                { from: 'public' },
+            ]
+        }),
+    ],
     //plugins: [new MiniCssExtractPlugin({filename : "style.css"})],
     module: {
         rules: [
@@ -43,6 +52,10 @@ module.exports = {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/,
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-url-loader'
             }
         ]
     },

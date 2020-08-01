@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Button } from "react-bootstrap";
-import { keycloak } from "../components/auth/keycloak";
+import { keycloak } from "../auth/keycloak";
 
 export const AppNavbar = () => (
     <Navbar bg="light">

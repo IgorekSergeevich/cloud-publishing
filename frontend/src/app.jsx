@@ -1,22 +1,23 @@
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import store from "./redux/store";
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import { Container, Row } from "react-bootstrap";
-import { AuthApp } from "./components/auth/AuthApp.jsx";
+import { MainLayout } from "./components/layouts/MainLayout.jsx";
+import { LoginLayout } from "./components/layouts/LoginLayout.jsx";
+import { connect } from "react-redux";
+import { Container } from "react-bootstrap";
 
-const App =
-    (<Provider store={store}>
-        <BrowserRouter>
-            <Container>
-                <AuthApp />
-            </Container>
-        </BrowserRouter>
-    </Provider>);
+const App = (props) => {
 
+    return (
+        <Container>
+            { props.isAuthorized ? <MainLayout /> : <LoginLayout /> }
+        </Container>);
+};
 
-ReactDOM.render(
-    App,
-    document.getElementById("root")
-);
+const mapStateToProps = (state) => {
+    return {
+        isAuthorized: state.auth.isAuthorized
+    };
+};
+
+const AppContainer = connect(mapStateToProps)(App);
+
+export { AppContainer as App };
