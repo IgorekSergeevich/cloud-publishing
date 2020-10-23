@@ -1,22 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav, Button } from "react-bootstrap";
-import { keycloak } from "../auth/keycloak";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
+import { keycloak } from "../auth/keycloak.js";
+import { makeStyles } from '@material-ui/core/styles';
 
-export const AppNavbar = () => (
-    <Navbar bg="light">
-        <Navbar.Collapse id="basic-navbar-nav">
-            <Navbar.Brand href="#bar">Cloud-publishing</Navbar.Brand>
-            <Nav className="mr-auto">
-                <Nav.Link to="/employees" as={Link}>Employees</Nav.Link>
-                <Nav.Link to="/articles" as={Link}>Articles</Nav.Link>
-            </Nav>
-            <Nav>
-            <Button variant="outline-dark" onClick={() => keycloak.logout()}>
-                    LogOut
-            </Button>
-            </Nav>
-        </Navbar.Collapse>
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    title: {
+        flexGrow: 1,
+    },
+}));
 
-    </Navbar>
-);
+export const AppNavbar = () => {
+    const classes = useStyles();
+
+    return (
+    <div className={classes.root}>
+        <AppBar position="static">
+            <Toolbar>
+                <Typography variant="h6" className={classes.title}>
+                    Cloud publishing
+                </Typography>
+                <MenuItem component={Link} to="/employees">Employees</MenuItem>
+                <MenuItem component={Link} to="/articles">Articles</MenuItem>
+                <Button color="inherit" onClick={() => keycloak.logout()}>Logout</Button>
+            </Toolbar>
+        </AppBar>
+    </div>);
+};

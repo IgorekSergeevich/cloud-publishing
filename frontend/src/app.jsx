@@ -1,15 +1,14 @@
 import React from "react";
 import { MainLayout } from "./components/layouts/MainLayout.jsx";
-import { LoginLayout } from "./components/layouts/LoginLayout.jsx";
 import { connect } from "react-redux";
-import { Container } from "react-bootstrap";
+import { Home } from "./components/pages/Home.jsx";
 
 const App = (props) => {
 
     return (
-        <Container>
-            { props.isAuthorized ? <MainLayout /> : <LoginLayout /> }
-        </Container>);
+        <>
+            { props.isAuthorized ? <MainLayout /> : <Home /> }
+        </>);
 };
 
 const mapStateToProps = (state) => {

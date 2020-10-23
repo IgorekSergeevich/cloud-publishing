@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { App } from "./App.jsx";
 import { checkAuth } from "./auth/auth";
+import { AppLayout } from "./components/layouts/AppLayout.jsx";
 
 const render = (application) => {
     ReactDOM.render(
@@ -16,11 +17,13 @@ const render = (application) => {
 const startApp = async () => {
 
     await checkAuth();
-    
+
     render(
         <Provider store={store}>
             <BrowserRouter>
-                <App />
+                <AppLayout>
+                    <App />
+                </AppLayout>
             </BrowserRouter>
         </Provider>
     );
