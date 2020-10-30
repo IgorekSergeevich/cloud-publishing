@@ -1,21 +1,33 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { Employees } from "../pages/Employees.jsx";
 import { Articles } from "../pages/Articles.jsx";
-import { AppNavbar } from "../AppNavbar.jsx";
+import { PublishingAppBar } from "../PublishingAppBar.jsx";
+import { Employees } from "../pages/employees/Employees.jsx";
+import { Navigation } from "../Navigation.jsx";
+import { makeStyles } from "@material-ui/core/styles";
+import Toolbar from "@material-ui/core/Toolbar";
+
+const useStyles = makeStyles((theme) => ({
+    content: {
+        padding: theme.spacing(3),
+        flexGrow: 1
+    }
+}));
 
 export const MainLayout = (props) => {
-
+    const classes = useStyles();
     return (
-        <div>
-            <AppNavbar />
-            <div>
+        <>
+            <PublishingAppBar />
+            <Navigation />
+            <main className={classes.content}>
+                <Toolbar />
                 <Switch>
                     <Route path="/employees" component={Employees} />
                     <Route path="/articles" component={Articles} />
                 </Switch>
-            </div>
+            </main>
 
-        </div>
+        </>
     );
 }
