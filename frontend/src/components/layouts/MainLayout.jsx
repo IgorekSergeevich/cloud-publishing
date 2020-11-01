@@ -3,7 +3,6 @@ import { Route, Switch } from "react-router-dom";
 import { Articles } from "../pages/Articles.jsx";
 import { PublishingAppBar } from "../PublishingAppBar.jsx";
 import { Employees } from "../pages/employees/Employees.jsx";
-import { Navigation } from "../Navigation.jsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 
@@ -19,7 +18,6 @@ export const MainLayout = (props) => {
     return (
         <>
             <PublishingAppBar />
-            <Navigation />
             <main className={classes.content}>
                 <Toolbar />
                 <Switch>

@@ -1,6 +1,6 @@
 import React from "react";
 import { EmployeeTable } from "./EmployeeTable.jsx";
-import { loadEmployees } from "../../../redux/thunk/employee-thunk";
+import { loadEmployees, deleteEmployee } from "../../../redux/thunk/employee-thunk";
 import { connect } from "react-redux";
 
 
@@ -11,22 +11,26 @@ class EmployeeTableContainer extends React.Component {
     }
 
     render() {
-        return <EmployeeTable employees={this.props.employees} isLoading={this.props.isLoading}/>;
+        return (
+            <EmployeeTable employees={this.props.employees}
+                isFetching={this.props.isFetching}
+                deleteEmployee={this.props.deleteEmployee}/>);
     }
 }
 
 const mapStateToProps = (state) => {
     return {
         employees: state.employee.employees,
-        isLoading: state.employee.isLoading
-    }
+        isFetching: state.employee.isFetching
+    };
 };
 
 const mapDispatchToProps = {
-    loadEmployees
+    loadEmployees,
+    deleteEmployee
 };
 
-const EmployeeTableConnectedContainer = 
+const EmployeeTableConnectedContainer =
     connect(mapStateToProps, mapDispatchToProps)(EmployeeTableContainer);
 
-export {EmployeeTableConnectedContainer as EmployeeTableContainer};    
+export { EmployeeTableConnectedContainer as EmployeeTableContainer };    

@@ -21,3 +21,9 @@ export function deleteEmployeeById(id) {
     return fetch(`http://localhost:8080/users/${id}`, { method: "DELETE" })
         .then(() => id);
 }
+
+export function deleteEmployeeByIdMock(id) {
+    return new Promise(resolve => {
+        setTimeout(() => resolve(id), 1000);
+    });
+}
