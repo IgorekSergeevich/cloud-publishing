@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Navigation } from "./Navigation.jsx";
+import { AppBarMenu } from "./AppBarMenu.jsx";
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -22,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 const PublishingAppBar = (props) => {
     const classes = useStyles();
     const [isNavOpen, setIsNavOpen] = useState(false);
+
     return (
         <>
             <AppBar position="fixed" className={classes.appBar}>
@@ -36,13 +38,16 @@ const PublishingAppBar = (props) => {
                     <Typography variant="h6" className={classes.title}>
                         Cloud publishing
                     </Typography>
-                    {props.isAuthorized
-                        ? <Button color="inherit" onClick={() => keycloak.logout()}>Logout</Button>
-                        : <Button color="inherit" onClick={() => keycloak.login()}>Login</Button>
+                    {props.isAuthorized ?
+                        (
+                            <AppBarMenu />
+                        ) : (
+                            <Button color="inherit" onClick={() => keycloak.login()}>login</Button>
+                        )
                     }
                 </Toolbar>
             </AppBar>
-            {props.isAuthorized ? <Navigation open={isNavOpen}/> : <></>}
+            {props.isAuthorized ? <Navigation open={isNavOpen} /> : <></>}
         </>);
 };
 
