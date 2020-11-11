@@ -4,7 +4,6 @@ import com.ikuzmin.cloud.publishing.model.entitys.Employee;
 import com.ikuzmin.employee.rest.dao.EmployeeDao;
 import com.ikuzmin.employee.rest.services.EmployeeService;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +19,7 @@ public class EmployeeServiceImpl implements EmployeeService {
   
   @Override
   public List<Employee> getAllEmployee() {
-    return employeeDao.getAllEmployee();
-  }
-
-  @Override
-  public Optional<Employee> getEmployeeByLogin(String login) {
-    return employeeDao.getEmployeeByLogin(login);
+    return employeeDao.findAll();
   }
   
 }
