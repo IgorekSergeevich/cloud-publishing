@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { App } from "./App.jsx";
-import { checkAuth } from "./auth/auth";
+import { checkAuth } from "./auth/keycloak-auth";
 import { AppLayout } from "./components/layouts/AppLayout.jsx";
 
 const render = (application) => {

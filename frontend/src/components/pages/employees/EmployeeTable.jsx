@@ -32,10 +32,10 @@ export const EmployeeTable = ({ employees, isFetching, deleteEmployee }) => {
                             {employees.map((e, index) => (
                                 <TableRow key={e.id}>
                                     <TableCell align="left">{index + 1}</TableCell>
-                                    <TableCell align="left">{e.name}</TableCell>
-                                    <TableCell align="left">{e.surname}</TableCell>
+                                    <TableCell align="left">{e.firstName}</TableCell>
+                                    <TableCell align="left">{e.lastName}</TableCell>
                                     <TableCell align="left">{e.sex}</TableCell>
-                                    <TableCell align="left">{e.birthDate}</TableCell>
+                                    <TableCell align="left">{e.birthYear}</TableCell>
                                     <TableCell align="left">{e.type}</TableCell>
                                     <TableCell align="left">
                                         <IconButton>

@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import { authReducer } from "./reducers/auth-reducer.ts";
-import { employeeReducer } from "./reducers/employees-reducer";
+import authReducer from "./ducks/auth.ts";
+import employeeReducer from "./ducks/employees";
 import thunkMiddleware from "redux-thunk";
 
 const reducers = {

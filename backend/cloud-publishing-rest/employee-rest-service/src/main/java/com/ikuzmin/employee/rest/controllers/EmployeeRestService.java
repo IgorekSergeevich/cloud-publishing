@@ -8,19 +8,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import com.ikuzmin.cloud.publishing.model.entitys.Employee;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
  * @author Igor Kuzmin
  */
 
-@RestController("/employee")
+@RestController
+@RequestMapping("/employee")
 public class EmployeeRestService {
   
   @Autowired
   private EmployeeService employeeService;
   
+  @CrossOrigin
   @GetMapping("/all")
+  @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<List<Employee>> getAllEmployee() {
     List<Employee> result = employeeService.getAllEmployee();
     if (result.isEmpty()) {

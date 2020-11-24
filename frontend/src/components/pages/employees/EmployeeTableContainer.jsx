@@ -1,6 +1,6 @@
 import React from "react";
 import { EmployeeTable } from "./EmployeeTable.jsx";
-import { loadEmployees, deleteEmployee } from "../../../redux/thunk/employee-thunk";
+import { loadEmployees, deleteEmployee } from "../../../redux/ducks/employees";
 import { connect } from "react-redux";
 
 

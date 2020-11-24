@@ -3,7 +3,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import IconButton from '@material-ui/core/IconButton';
-import { keycloak } from "../auth/keycloak.js";
+import { keycloak } from "../auth/keycloak-auth.js";
 
 export const AppBarMenu = () => {
     const [anchorEl, setAnchorEl] = useState(null);
