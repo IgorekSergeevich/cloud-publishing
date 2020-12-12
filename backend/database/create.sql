@@ -2,6 +2,8 @@ DROP DATABASE IF EXISTS `cloud-publishing`;
 
 CREATE DATABASE IF NOT EXISTS `cloud-publishing`;
 
+USE `cloud-publishing`;
+
 CREATE TABLE `article` (
   `id`            int          NOT NULL AUTO_INCREMENT,
   `publishing_id` int          NOT NULL,
