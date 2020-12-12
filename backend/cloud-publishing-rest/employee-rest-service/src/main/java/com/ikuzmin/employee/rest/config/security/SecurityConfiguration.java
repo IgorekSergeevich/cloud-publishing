@@ -42,6 +42,8 @@ public class SecurityConfiguration extends KeycloakWebSecurityConfigurerAdapter 
     super.configure(http);
     http.cors().and()
         .authorizeRequests()
+        .antMatchers("/profile/avatars/*")
+        .permitAll()
         .anyRequest()
         .authenticated();
   }

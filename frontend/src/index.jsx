@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { App } from "./App.jsx";
 import { checkAuth } from "./auth/keycloak-auth";
-import { AppLayout } from "./components/layouts/AppLayout.jsx";
+import { AppTheme } from "./components/theme/AppTheme.jsx";
 
 const render = (application) => {
     ReactDOM.render(
@@ -21,9 +21,9 @@ const startApp = async () => {
     render(
         <Provider store={store}>
             <BrowserRouter>
-                <AppLayout>
+                <AppTheme>
                     <App />
-                </AppLayout>
+                </AppTheme>
             </BrowserRouter>
         </Provider>
     );
