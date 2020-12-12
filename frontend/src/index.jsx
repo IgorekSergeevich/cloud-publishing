@@ -3,7 +3,7 @@ import store from "./redux/store";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { App } from "./App.jsx";
+import { App } from "./app.jsx";
 import { checkAuth } from "./auth/keycloak-auth";
 import { AppTheme } from "./components/theme/AppTheme.jsx";
 
