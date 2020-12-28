@@ -2,3 +2,5 @@ target
 nb-configuration.xml
 node_modules
 dist
+*.iml
+.idea
