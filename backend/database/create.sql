@@ -10,7 +10,7 @@ CREATE TABLE `article` (
   `topic_id`      int          NOT NULL,
   `title`         varchar(255) NOT NULL,
   `content`       TEXT         NOT NULL,
-  `author_id`     int          NOT NULL,
+  `author_login`  varchar(20)  NOT NULL UNIQUE,
   PRIMARY KEY (`id`)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;
 
@@ -20,14 +20,9 @@ CREATE TABLE `topic` (
   PRIMARY KEY (`id`)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-CREATE TABLE `employee` (
+CREATE TABLE `profile` (
   `id`           int          NOT NULL AUTO_INCREMENT,
-  `login`       varchar(255) NOT NULL UNIQUE, 
-  `first_name`   varchar(255) NOT NULL,
-  `last_name`    varchar(255) NOT NULL,
-  `middle_name`  varchar(255),
-  `email`        varchar(255) NOT NULL UNIQUE,
-  `password`     varchar(255) NOT NULL,
+  `employee_login`       varchar(20) NOT NULL UNIQUE,
   `sex`          char(1)      NOT NULL,
   `birth_year`   smallint     NOT NULL,
   `address`      varchar(255) NOT NULL,
@@ -45,8 +40,8 @@ CREATE TABLE `education` (
 
 CREATE TABLE `article_coauthors` (
   `article_id`  int NOT NULL,
-  `employee_id` int NOT NULL,
-  PRIMARY KEY (`article_id`, `employee_id`)
+  `employee_login` varchar(20) NOT NULL UNIQUE,
+  PRIMARY KEY (`article_id`, `employee_login`)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE `publishing` (
@@ -64,17 +59,17 @@ CREATE TABLE `publishing_topic` (
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE `publishing_employee` (
-  `employee_id`   int NOT NULL,
+  `employee_login`   varchar(20) NOT NULL UNIQUE,
   `publishing_id` int NOT NULL,
-  PRIMARY KEY (`employee_id`, `publishing_id`)
+  PRIMARY KEY (`employee_login`, `publishing_id`)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE `review` (
   `article_id` int  NOT NULL,
-  `reviwer_id` int  NOT NULL,
+  `employee_login` varchar(20) NOT NULL UNIQUE,
   `content`    TEXT NOT NULL,
   `approved`   bool NOT NULL DEFAULT FALSE,
-  PRIMARY KEY (`article_id`, `reviwer_id`)
+  PRIMARY KEY (`article_id`, `employee_login`)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE `issue` (
@@ -123,19 +118,13 @@ ALTER TABLE `article`
   ADD CONSTRAINT `article_fk0` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id`);
 
 ALTER TABLE `article`
-  ADD CONSTRAINT `article_fk1` FOREIGN KEY (`author_id`) REFERENCES `employee` (`id`);
-
-ALTER TABLE `article`
   ADD CONSTRAINT `article_publishing_fk1` FOREIGN KEY (`publishing_id`) REFERENCES `publishing` (`id`);
 
-ALTER TABLE `employee`
-  ADD CONSTRAINT `employee_fk0` FOREIGN KEY (`education_id`) REFERENCES `education` (`id`);
+ALTER TABLE `profile`
+  ADD CONSTRAINT `profile_fk0` FOREIGN KEY (`education_id`) REFERENCES `education` (`id`);
 
 ALTER TABLE `article_coauthors`
   ADD CONSTRAINT `article_coauthors_fk0` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`);
-
-ALTER TABLE `article_coauthors`
-  ADD CONSTRAINT `article_coauthors_fk1` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`);
 
 ALTER TABLE `publishing_topic`
   ADD CONSTRAINT `publishing_topic_fk0` FOREIGN KEY (`publishing_id`) REFERENCES `publishing` (`id`);
@@ -144,16 +133,10 @@ ALTER TABLE `publishing_topic`
   ADD CONSTRAINT `publishing_topic_fk1` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id`);
 
 ALTER TABLE `publishing_employee`
-  ADD CONSTRAINT `publishing_employee_fk0` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`);
-
-ALTER TABLE `publishing_employee`
-  ADD CONSTRAINT `publishing_employee_fk1` FOREIGN KEY (`publishing_id`) REFERENCES `publishing` (`id`);
+  ADD CONSTRAINT `publishing_employee_fk0` FOREIGN KEY (`publishing_id`) REFERENCES `publishing` (`id`);
 
 ALTER TABLE `review`
   ADD CONSTRAINT `review_fk0` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`);
-
-ALTER TABLE `review`
-  ADD CONSTRAINT `review_fk1` FOREIGN KEY (`reviwer_id`) REFERENCES `employee` (`id`);
 
 ALTER TABLE `issue`
   ADD CONSTRAINT `issue_fk0` FOREIGN KEY (`publishing_id`) REFERENCES `publishing` (`id`);

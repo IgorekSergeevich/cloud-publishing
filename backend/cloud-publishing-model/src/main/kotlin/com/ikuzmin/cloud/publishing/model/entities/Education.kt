@@ -15,6 +15,6 @@ class Education: Serializable {
     val title: String? = null
 
     @OneToMany(mappedBy = "education")
-    val employees: List<Employee>? = null
+    val employees: List<Profile>? = null
 
 }

@@ -6,29 +6,14 @@ import javax.persistence.*
 import javax.persistence.GenerationType.IDENTITY
 
 @Entity
-class Employee: Serializable {
+class Profile: Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     var id: Int? = null
 
-    @Column(unique = true)
-    var login: String? = null
-
-    @Column
-    var firstName: String? = null
-
-    @Column
-    var lastName: String? = null
-
-    @Column
-    var middleName: String? = null
-
-    @Column(nullable = false, unique = true)
-    var email: String? = null
-
     @Column(nullable = false)
-    val password: String? = null
+    var employeeLogin: String? = null
 
     @Column(nullable = false)
     val sex: Char? = null
