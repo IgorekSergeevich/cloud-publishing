@@ -1,12 +1,14 @@
 package com.ikuzmin.employee.rest.services.impl
 
 import com.ikuzmin.cloud.publishing.model.dto.ProfileDto
+import com.ikuzmin.cloud.publishing.model.entities.Education
 import com.ikuzmin.cloud.publishing.model.entities.Profile
 import com.ikuzmin.cloud.publishing.model.entities.KeycloakUser
 import com.ikuzmin.common.rest.clients.KeycloakRestClient
+import com.ikuzmin.employee.rest.dao.EducationDao
 import com.ikuzmin.employee.rest.dao.ProfileDao
+import com.ikuzmin.employee.rest.mappers.UserAndProfileMapper
 import com.ikuzmin.employee.rest.services.EmployeeService
-import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Service
 import java.util.stream.Collectors.toList
 import java.util.stream.Collectors.toMap
@@ -16,10 +18,9 @@ import java.util.stream.Collectors.toMap
 class EmployeeServiceImpl constructor(
     val profileDao: ProfileDao,
     val keycloakRestClient: KeycloakRestClient,
-    val modelMapper: ModelMapper
+    val userAndProfileMapper: UserAndProfileMapper,
+    val educationDao: EducationDao
 ) : EmployeeService {
-
-    override fun getAllEmployee(): List<Profile> = profileDao.findAll()
 
     override fun getEmployeesProfiles(): List<ProfileDto> {
         val keycloakUsers = keycloakRestClient.getUsers()?.body?.toList()
@@ -31,15 +32,21 @@ class EmployeeServiceImpl constructor(
         return keycloakUsers
             ?.stream()
             ?.map { user ->
-                val dto = modelMapper.map(user, ProfileDto::class.java)
-                val profile = profilesMap[user.username]
-                if (profile != null) modelMapper.map(profile, dto)
-                return@map dto
-            }?.collect(toList())?: emptyList()
+                userAndProfileMapper
+                    .convertUserAndProfileToDto(
+                        user,
+                        profilesMap[user.username]
+                    )
+            }?.collect(toList()) ?: emptyList()
     }
 
-    override fun createEmployee(keycloakUser: KeycloakUser) {
-        keycloakRestClient.createEmployeeAccount(keycloakUser)
+    override fun createEmployee(userProfile: ProfileDto) {
+        keycloakRestClient.createEmployeeAccount(
+            userAndProfileMapper.convertDtoToUser(userProfile))
+        profileDao.save(
+            userAndProfileMapper.convertDtoToProfile(userProfile))
     }
+
+    override fun getEducationList(): List<Education> = educationDao.findAll()
 
 }

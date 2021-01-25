@@ -2,6 +2,7 @@ package com.ikuzmin.cloud.publishing.model.entities
 
 import com.ikuzmin.cloud.publishing.model.roles.EmployeeType
 import java.io.Serializable
+import java.time.LocalDate
 import javax.persistence.*
 import javax.persistence.GenerationType.IDENTITY
 
@@ -16,23 +17,23 @@ class Profile: Serializable {
     var employeeLogin: String? = null
 
     @Column(nullable = false)
-    val sex: Char? = null
+    var sex: Char? = null
 
     @Column(nullable = false)
-    val birthYear: Short? = null
+    var birthDate: LocalDate? = null
 
     @Column(nullable = false)
-    val address: String? = null
+    var address: String? = null
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    val type: EmployeeType? = null
+    var type: EmployeeType? = null
 
     @ManyToOne
     @JoinColumn(name = "education_id", nullable = true)
-    val education: Education? = null
+    var education: Education? = null
 
     @Column(nullable = false)
-    val chiefEditor: Boolean? = null
+    var chiefEditor: Boolean? = null
 
 }

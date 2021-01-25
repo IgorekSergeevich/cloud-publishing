@@ -1,21 +1,22 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { EmployeeTable } from "./EmployeeTable.jsx";
 import { loadEmployees, deleteEmployee } from "../../../../redux/ducks/employees";
 import { connect } from "react-redux";
 
 
-class EmployeeTableContainer extends React.Component {
+const EmployeeTableContainer = (props) => {
 
-    componentDidMount() {
-        this.props.loadEmployees();
-    }
+    const loadAllEmployee = useCallback(() => {
+        props.loadEmployees();
+    }, []);
 
-    render() {
-        return (
-            <EmployeeTable employees={this.props.employees}
-                isFetching={this.props.isFetching}
-                deleteEmployee={this.props.deleteEmployee}/>);
-    }
+    useEffect(() => loadAllEmployee(), [loadAllEmployee]);
+
+    return (
+        <EmployeeTable employees={props.employees}
+            isFetching={props.isFetching}
+            deleteEmployee={props.deleteEmployee} />);
+
 }
 
 const mapStateToProps = (state) => {

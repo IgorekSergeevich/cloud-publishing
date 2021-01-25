@@ -15,26 +15,24 @@ const initState = {
 export default (state = initState, action) => {
     switch (action.type) {
         case LOADING_EMPLOYEES:
-            return { ...state, ... { isFetching: true } };
+            return { ...state, isFetching: true };
         case EMPLOYEES_LOADED:
-            return { ...state, ... { isFetching: false, employees: action.employees } };
+            return { ...state, isFetching: false, employees: action.employees };
         case DELETING_EMPLOYEE:
-            return { ...state, ... { isFetching: true } };
+            return { ...state, isFetching: true };
         case EMPLOYEE_DELETED:
             return {
                 ...state,
-                ... {
-                    isFetching: false,
-                    employees: state.employees.filter(e => e.id !== action.employeeId)
-                }
+                isFetching: false,
+                employees: state.employees.filter(e => e.id !== action.employeeId)
             };
         case CREATING_EMPLOYEE:
             return {
-                ...state, ...{ isFetching: true } 
+                ...state, isFetching: true
             };
         case EMPLOYEE_CREATED:
             return {
-                ...state, ...{ isFetching: false } 
+                ...state, isFetching: false
             };
         default:
             return state;

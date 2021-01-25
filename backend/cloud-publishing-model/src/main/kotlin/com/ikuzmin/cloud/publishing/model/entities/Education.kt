@@ -9,12 +9,9 @@ class Education: Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    val id: Int? = null
+    var id: Int? = null
 
     @Column
-    val title: String? = null
-
-    @OneToMany(mappedBy = "education")
-    val employees: List<Profile>? = null
+    var title: String? = null
 
 }

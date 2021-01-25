@@ -32,7 +32,7 @@ export const EmployeeTable = ({ employees, isFetching, deleteEmployee }) => {
                                 <TableCell align="left">{e.firstName}</TableCell>
                                 <TableCell align="left">{e.lastName}</TableCell>
                                 <TableCell align="left">{e.sex}</TableCell>
-                                <TableCell align="left">{e.birthYear}</TableCell>
+                                <TableCell align="left">{e.birthDate}</TableCell>
                                 <TableCell align="left">{e.type}</TableCell>
                                 <TableCell align="left">
                                     <IconButton>

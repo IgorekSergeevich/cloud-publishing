@@ -17,5 +17,6 @@ export const employeeAPI = {
     createEmployeeAccount(employee) {
         return axiosInstance.post(
             "http://localhost:8080/employee/new", employee);
-    }
+    },
+
 };
