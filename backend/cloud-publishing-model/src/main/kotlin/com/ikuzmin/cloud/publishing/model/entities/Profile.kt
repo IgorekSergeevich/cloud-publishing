@@ -36,4 +36,6 @@ class Profile: Serializable {
     @Column(nullable = false)
     var chiefEditor: Boolean? = null
 
+    @Column
+    var photo: ByteArray? = null
 }

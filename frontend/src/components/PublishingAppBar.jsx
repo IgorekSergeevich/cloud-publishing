@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const PublishingAppBar = (props) => {
+const PublishingAppBar = ({ isAuthorized, userName }) => {
     const classes = useStyles();
     const [isNavOpen, setIsNavOpen] = useState(false);
 
@@ -28,31 +28,34 @@ const PublishingAppBar = (props) => {
         <>
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
-                    <IconButton
-                        aria-label="open menu"
-                        onClick={() => setIsNavOpen(!isNavOpen)}
-                        edge="start"
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                    {isAuthorized ?
+                        (<IconButton
+                            aria-label="open menu"
+                            onClick={() => setIsNavOpen(!isNavOpen)}
+                            edge="start"
+                        >
+                            <MenuIcon />
+                        </IconButton>) : (<></>)
+                    }
                     <Typography variant="h6" className={classes.title}>
                         Cloud publishing
                     </Typography>
-                    {props.isAuthorized ?
+                    {isAuthorized ?
                         (
-                            <AppBarMenu />
+                            <AppBarMenu userName={userName}/>
                         ) : (
                             <Button color="inherit" onClick={() => keycloak.login()}>login</Button>
                         )
                     }
                 </Toolbar>
             </AppBar>
-            {props.isAuthorized ? <Navigation open={isNavOpen} /> : <></>}
+            {isAuthorized ? <Navigation open={isNavOpen} /> : <></>}
         </>);
 };
 
 const mapStateToProps = (state) => ({
-    isAuthorized: state.auth.isAuthorized
+    isAuthorized: state.auth.isAuthorized,
+    userName: state.auth.userName
 });
 
 const ConnectedPublishingAppBar = connect(mapStateToProps)(PublishingAppBar);

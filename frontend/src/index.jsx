@@ -5,7 +5,6 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { App } from "./app.jsx";
 import { checkAuth } from "./auth/keycloak-auth";
-import CssBaseline  from "@material-ui/core/CssBaseline"
 
 
 const render = (application) => {
@@ -22,7 +21,6 @@ const startApp = async () => {
     render(
         <Provider store={store}>
             <BrowserRouter>
-                <CssBaseline />
                 <App />
             </BrowserRouter>
         </Provider>

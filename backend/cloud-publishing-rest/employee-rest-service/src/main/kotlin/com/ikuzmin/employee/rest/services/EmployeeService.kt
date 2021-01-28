@@ -13,4 +13,6 @@ interface EmployeeService {
     fun createEmployee(userProfile: ProfileDto)
 
     fun getEducationList(): List<Education>
+
+    fun getUserPhoto(userId: Int): ByteArray?
 }

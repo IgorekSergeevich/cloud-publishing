@@ -4,3 +4,4 @@ node_modules
 dist
 *.iml
 .idea
+cloud-publishing.txt

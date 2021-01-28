@@ -10,4 +10,10 @@ class KeycloakUser {
 
     var email: String? = null
 
+    var enabled: Boolean = true
+
+    var credentials: List<Credential>? = null
+
+    class Credential(val type: String, val value: String)
+
 }

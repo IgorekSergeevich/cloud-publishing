@@ -1,18 +1,18 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import { connect } from "../../auth/react-redux";
-import { keycloak } from "../../auth/keycloak-auth"
+import { connect } from "react-redux";
 
-const PrivateRoute = ({ component: Component, isAthorized, ...rest }) => {
+
+const PrivateRoute = ({ component: Component, isAuthorized, ...rest }) => {
     return <Route {...rest} render={(props) => {
-        return isAthorized ? <Component {...props} /> : <Redirect to="/login" />;
+        return isAuthorized ? <Component {...props} /> : <Redirect to="/" />;
     }} />;
 
 }
 
 const mapStateToProps = (state) => {
     return {
-        isAthorized: state.auth.isAthorized
+        isAuthorized: state.auth.isAuthorized
     };
 }
 

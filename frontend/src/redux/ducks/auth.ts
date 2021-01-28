@@ -9,9 +9,9 @@ let initState = {
 export default (state = initState, action: AuthUserActionType) => {
     switch (action.type) {
         case LOGIN_USER:
-            return { ...state, ...{ isAuthorized: true, userName: action.userName } };
+            return { ...state, isAuthorized: true, userName: action.userName };
         case LOGOUT_USER:
-            return { ...state, ...initState }; 
+            return { ...state, ...initState };
         default:
             return state;
     }
@@ -19,7 +19,6 @@ export default (state = initState, action: AuthUserActionType) => {
 
 export type AuthUserActionType = {
     type: typeof LOGIN_USER | typeof LOGOUT_USER,
-    isStartLogin?: string
     userName?: string
 };
 

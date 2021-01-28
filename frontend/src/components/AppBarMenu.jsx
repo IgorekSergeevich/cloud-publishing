@@ -1,13 +1,25 @@
 import React, { useState } from "react";
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import { keycloak } from "../auth/keycloak-auth.js";
+import Avatar from '@material-ui/core/Avatar';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const AppBarMenu = () => {
+
+const useStyles = makeStyles((theme) => ({
+    emptyAvatar: {
+      color: "black",
+      backgroundColor: "white"
+    }
+  }));
+
+
+export const AppBarMenu = ({userName}) => {
+    
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+    const cl = useStyles();
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -26,7 +38,7 @@ export const AppBarMenu = () => {
                 onClick={handleMenu}
                 color="inherit"
             >
-                <AccountCircle />
+                <Avatar className={cl.emptyAvatar}>{userName[0]}</Avatar>
             </IconButton>
             <Menu
                 id="menu-appbar"

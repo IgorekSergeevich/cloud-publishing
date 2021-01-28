@@ -20,6 +20,18 @@ axiosInstance.interceptors.response.use(
     async error => {
         const originalRequest = error.config;
 
+        if (error.response.status === 401) {
+            if (keycloak.authenticated && keycloak.isTokenExpired()) {
+                let isRefreshed = await keycloak.updateToken();
+                if (isRefreshed) {
+                    return axiosInstance(originalRequest);
+                }
+            } else {
+               
+            }
+
+        }
+
         if (error.response.status === 401 && keycloak.isTokenExpired()) {
             let isRefreshed = await keycloak.updateToken();
             if (isRefreshed) {

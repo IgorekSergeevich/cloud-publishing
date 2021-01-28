@@ -3,6 +3,7 @@ package com.ikuzmin.employee.rest.controllers
 import com.ikuzmin.cloud.publishing.model.dto.ProfileDto
 import com.ikuzmin.cloud.publishing.model.entities.Education
 import com.ikuzmin.employee.rest.services.EmployeeService
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
@@ -33,4 +34,9 @@ class EmployeeRestController(
     fun getEducationList(): ResponseEntity<List<Education>> =
         ResponseEntity.ok(employeeService.getEducationList())
 
+    @CrossOrigin
+    @GetMapping("/photo/{id}")
+    fun getUserPhoto(@PathVariable id: Int) =
+        ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG)
+            .body(employeeService.getUserPhoto(id))
 }
