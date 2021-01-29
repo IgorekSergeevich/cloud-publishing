@@ -4,16 +4,11 @@ import com.ikuzmin.cloud.publishing.model.roles.EmployeeType
 import java.io.Serializable
 import java.time.LocalDate
 import javax.persistence.*
-import javax.persistence.GenerationType.IDENTITY
 
 @Entity
 class Profile: Serializable {
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
-    var id: Int? = null
-
-    @Column(nullable = false)
     var employeeLogin: String? = null
 
     @Column(nullable = false)
@@ -35,7 +30,4 @@ class Profile: Serializable {
 
     @Column(nullable = false)
     var chiefEditor: Boolean? = null
-
-    @Column
-    var photo: ByteArray? = null
 }

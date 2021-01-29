@@ -5,18 +5,18 @@ import IconButton from '@material-ui/core/IconButton';
 import { keycloak } from "../auth/keycloak-auth.js";
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
-
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     emptyAvatar: {
-      color: "black",
-      backgroundColor: "white"
+        color: "black",
+        backgroundColor: "white"
     }
-  }));
+}));
 
 
-export const AppBarMenu = ({userName}) => {
-    
+const AppBarMenu = ({ userName, photoUrl }) => {
+
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const cl = useStyles();
@@ -38,7 +38,9 @@ export const AppBarMenu = ({userName}) => {
                 onClick={handleMenu}
                 color="inherit"
             >
-                <Avatar className={cl.emptyAvatar}>{userName[0]}</Avatar>
+                <Avatar className={cl.emptyAvatar} src={photoUrl}>
+                    {!photoUrl && userName[0]}
+                </Avatar>
             </IconButton>
             <Menu
                 id="menu-appbar"
@@ -55,7 +57,7 @@ export const AppBarMenu = ({userName}) => {
                 open={open}
                 onClose={handleClose}
             >
-                <MenuItem onClick={()=> location.replace("http://localhost:8180/auth/realms/cloud-publishing/account/")}>
+                <MenuItem onClick={() => location.replace("http://localhost:8180/auth/realms/cloud-publishing/account/")}>
                     Account managment
                 </MenuItem>
                 <MenuItem onClick={() => keycloak.logout()}>Logout</MenuItem>
@@ -63,3 +65,12 @@ export const AppBarMenu = ({userName}) => {
         </div>
     );
 };
+
+const mapStateToProps = (state) => ({
+    userName: state.auth.userName,
+    photoUrl: state.auth.photoUrl
+});
+
+const AppBarMenuContainer = connect(mapStateToProps)(AppBarMenu);
+
+export { AppBarMenuContainer as AppBarMenu };

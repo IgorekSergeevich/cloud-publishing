@@ -15,11 +15,11 @@ class ProfileRestController(
     private val employeeService: EmployeeService
 ) {
 
-    @ResponseBody
+    /*@ResponseBody
     @GetMapping("/avatars/{id}")
     fun getEmployeeAvatar(@PathVariable id: Int): ResponseEntity<ByteArray> {
         //val result = ServletContextResource(servletContext, "/WEB-INF/images/image-example.jpg")
         return ResponseEntity.ok().contentType(IMAGE_JPEG).body(employeeService.getUserPhoto(id))
-    }
+    }*/
 
 }

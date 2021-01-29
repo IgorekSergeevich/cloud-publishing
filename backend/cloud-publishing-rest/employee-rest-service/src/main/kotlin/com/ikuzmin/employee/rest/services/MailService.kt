@@ -4,4 +4,6 @@ interface MailService {
 
     fun sendGeneratedPassword(generatedPassword: String)
 
+    fun handleMessageQueue()
+
 }

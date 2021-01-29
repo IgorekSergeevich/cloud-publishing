@@ -27,7 +27,7 @@ export const EmployeeTable = ({ employees, isFetching, deleteEmployee }) => {
             ) : (
                     <TableBody>
                         {employees.map((e, index) => (
-                            <TableRow key={e.id}>
+                            <TableRow key={e.username}>
                                 <TableCell align="left">{index + 1}</TableCell>
                                 <TableCell align="left">{e.firstName}</TableCell>
                                 <TableCell align="left">{e.lastName}</TableCell>

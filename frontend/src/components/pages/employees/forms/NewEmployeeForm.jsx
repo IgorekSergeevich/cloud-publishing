@@ -7,7 +7,7 @@ import { FormTextField as TextField } from "../../../commons/TextField.jsx";
 import { FormRadioGroup as RadioGroup } from "../../../commons/RadioGroup.jsx";
 import { FormSelect as Select } from "../../../commons/SelectField.jsx";
 import { FormCheckboxGroup as CheckboxGroup } from "../../../commons/CheckboxGroup.jsx";
-
+import { required } from "../../../../utils/validators"
 
 const sex = [
     {
@@ -52,27 +52,32 @@ const NewEmployeeForm = ({ handleSubmit, educations }) => {
                         name="username"
                         label="Login"
                         variant="outlined"
-                        className={cl.formField} />
+                        className={cl.formField}
+                        validate={required} />
                     <TextField
                         name="firstName"
                         label="Firstname"
                         variant="outlined"
-                        className={cl.formField} />
+                        className={cl.formField}
+                        validate={required} />
                     <TextField
                         name="lastName"
                         label="Lastname"
                         variant="outlined"
-                        className={cl.formField} />
+                        className={cl.formField}
+                        validate={required} />
                     <TextField
                         name="email"
                         label="Email"
                         variant="outlined"
-                        className={cl.formField} />
+                        className={cl.formField}
+                        validate={required} />
                     <RadioGroup
                         className={cl.formField}
                         name="sex"
                         formLabel="Gender"
-                        items={sex} />
+                        items={sex} 
+                        validate={required}/>
                 </Grid>
                 <Grid item xs={6}>
                     <Select
@@ -80,12 +85,14 @@ const NewEmployeeForm = ({ handleSubmit, educations }) => {
                         name="type"
                         className={cl.formField}
                         label="Positions"
+                        validate={required}
                     />
                     <TextField
                         name="address"
                         label="Address"
                         variant="outlined"
-                        className={cl.formField} />
+                        className={cl.formField}
+                        validate={required} />
                     <Select
                         items={educations.map(e => ({
                             label: e.title,
@@ -94,6 +101,7 @@ const NewEmployeeForm = ({ handleSubmit, educations }) => {
                         name="educationId"
                         className={cl.formField}
                         label="Education"
+                        validate={required}
                     />
                     <TextField
                         label="Birthday"
@@ -104,6 +112,7 @@ const NewEmployeeForm = ({ handleSubmit, educations }) => {
                         InputLabelProps={{
                             shrink: true
                         }}
+                        validate={required}
                     />
                     <CheckboxGroup
                         className={cl.formField}

@@ -19,4 +19,9 @@ export const employeeAPI = {
             "http://localhost:8080/employee/new", employee);
     },
 
+    loadShortProfile() {
+        return axiosInstance.get(`http://localhost:8080/employee/shortProfile`)
+            .then(response => response.data);
+    }
+
 };

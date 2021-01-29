@@ -5,33 +5,33 @@ import {
   FormControlLabel,
   FormLabel,
   Radio,
-  RadioGroup
+  RadioGroup,
+  FormHelperText
 } from "@material-ui/core";
 
-const FormRadioGroup = ({ children, input, meta, ...props }) => (
-  <RadioGroup {...props} {...input}>
-    {children}
-  </RadioGroup>
-);
 
 const ReduxRadioGroup = (props) => (
   <Field component={FormRadioGroup} {...props} />
 );
 
-const FormRadio = ({ formLabel, name, className, items }) => (
-  <FormControl component="fieldset" className={className}>
-    <FormLabel component="legend">{formLabel}</FormLabel>
-    <ReduxRadioGroup row name={name}>
-      {items?.map((it) => (
-        <FormControlLabel
-          value={it.value}
-          control={<Radio />}
-          label={it.label}
-          key={it.label}
-        />
-      ))}
-    </ReduxRadioGroup>
-  </FormControl>
-);
+const FormRadioGroup = ({ formLabel, className, items, meta, input, ...props }) => {
+  const hasError = meta.error && meta.touched;
 
-export { FormRadio as FormRadioGroup };
+  return (
+    <FormControl component="fieldset" className={className} error={hasError}>
+      <FormLabel component="legend">{formLabel}</FormLabel>
+      <RadioGroup row {...input} {...props}>
+        {items?.map((it) => (
+          <FormControlLabel
+            value={it.value}
+            control={<Radio />}
+            label={it.label}
+            key={it.label}
+          />
+        ))}
+      </RadioGroup>
+      {hasError && <FormHelperText>{meta.error}</FormHelperText>}
+    </FormControl>);
+};
+
+export { ReduxRadioGroup as FormRadioGroup };

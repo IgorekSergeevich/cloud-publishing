@@ -50,7 +50,7 @@ class SecurityConfiguration: KeycloakWebSecurityConfigurerAdapter() {
         http.cors().and()
             .csrf().disable()
             .authorizeRequests()
-            .antMatchers("/profile/avatars/*")
+            .antMatchers("/employee/photo/*")
             .permitAll()
             .anyRequest()
             .authenticated()

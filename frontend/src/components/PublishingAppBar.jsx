@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const PublishingAppBar = ({ isAuthorized, userName }) => {
+const PublishingAppBar = ({ isAuthorized }) => {
     const classes = useStyles();
     const [isNavOpen, setIsNavOpen] = useState(false);
 
@@ -42,7 +42,7 @@ const PublishingAppBar = ({ isAuthorized, userName }) => {
                     </Typography>
                     {isAuthorized ?
                         (
-                            <AppBarMenu userName={userName}/>
+                            <AppBarMenu/>
                         ) : (
                             <Button color="inherit" onClick={() => keycloak.login()}>login</Button>
                         )
@@ -55,7 +55,6 @@ const PublishingAppBar = ({ isAuthorized, userName }) => {
 
 const mapStateToProps = (state) => ({
     isAuthorized: state.auth.isAuthorized,
-    userName: state.auth.userName
 });
 
 const ConnectedPublishingAppBar = connect(mapStateToProps)(PublishingAppBar);

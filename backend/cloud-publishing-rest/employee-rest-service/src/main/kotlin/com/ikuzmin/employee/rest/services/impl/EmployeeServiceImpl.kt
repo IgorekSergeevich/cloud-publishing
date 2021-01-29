@@ -1,17 +1,23 @@
 package com.ikuzmin.employee.rest.services.impl
 
 import com.ikuzmin.cloud.publishing.model.dto.ProfileDto
+import com.ikuzmin.cloud.publishing.model.dto.ShortProfileDto
 import com.ikuzmin.cloud.publishing.model.entities.Education
 import com.ikuzmin.cloud.publishing.model.entities.KeycloakUser.Credential
 import com.ikuzmin.cloud.publishing.model.entities.Profile
 import com.ikuzmin.common.rest.clients.KeycloakRestClient
 import com.ikuzmin.employee.rest.dao.EducationDao
+import com.ikuzmin.employee.rest.dao.PhotoDao
 import com.ikuzmin.employee.rest.dao.ProfileDao
+import com.ikuzmin.employee.rest.mappers.ProfileToShortProfileMapper
 import com.ikuzmin.employee.rest.mappers.UserAndProfileMapper
 import com.ikuzmin.employee.rest.services.EmployeeService
 import com.ikuzmin.employee.rest.services.MailService
 import com.ikuzmin.employee.rest.services.PasswordGeneratorService
+import org.keycloak.KeycloakPrincipal
+import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken
 import org.springframework.stereotype.Service
+import java.security.Principal
 import java.util.stream.Collectors.toList
 import java.util.stream.Collectors.toMap
 
@@ -21,7 +27,9 @@ class EmployeeServiceImpl constructor(
     val profileDao: ProfileDao,
     val keycloakRestClient: KeycloakRestClient,
     val userAndProfileMapper: UserAndProfileMapper,
+    val shortProfileMapper: ProfileToShortProfileMapper,
     val educationDao: EducationDao,
+    val photoDao: PhotoDao,
     val passwordGeneratorService: PasswordGeneratorService,
     val mailService: MailService
 ) : EmployeeService {
@@ -55,15 +63,29 @@ class EmployeeServiceImpl constructor(
         profileDao.save(
             userAndProfileMapper.convertDtoToProfile(userProfile))
 
-
         mailService.sendGeneratedPassword(password)
     }
 
     override fun getEducationList(): List<Education> = educationDao.findAll()
 
-    override fun getUserPhoto(userId: Int): ByteArray? {
-        val profile = profileDao.findById(userId)
-        return if (profile.isPresent) profile.get().photo else null
+    override fun getShortProfile(principal: Principal): ShortProfileDto {
+        val login = ((principal as KeycloakAuthenticationToken)
+            .principal as KeycloakPrincipal<*>)
+            .keycloakSecurityContext
+            .token
+            .preferredUsername
+
+        val profile = profileDao.findById(login).get()
+        val dto = shortProfileMapper.profileToShortProfile(profile)
+        if (photoDao.existsById(login)) {
+            dto.profilePhotoUrl = "http://localhost:8080/employee/photo/$login"
+        }
+        return dto
+    }
+
+    override fun getUserPhoto(login: String): ByteArray? {
+        val photo = photoDao.findById(login)
+        return photo.get().photo
     }
 
 }
