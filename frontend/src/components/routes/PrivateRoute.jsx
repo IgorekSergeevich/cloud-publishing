@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 
 const PrivateRoute = ({ component: Component, isAuthorized, ...rest }) => {
+    
     return <Route {...rest} render={(props) => {
         return isAuthorized ? <Component {...props} /> : <Redirect to="/" />;
     }} />;

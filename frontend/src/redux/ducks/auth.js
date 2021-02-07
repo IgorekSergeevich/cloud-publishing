@@ -42,6 +42,8 @@ export function logoutAction() {
 export const login = () => async (dispatch) => {
     const isAuthorized = await keycloak.init({ onLoad: "check-sso", promiseType: "native" });
     if (isAuthorized) {
+        console.log(keycloak.idTokenParsed);
+
         const shortProfile = await employeeAPI.loadShortProfile();
         dispatch(loginAction(keycloak.idTokenParsed, shortProfile));
     }

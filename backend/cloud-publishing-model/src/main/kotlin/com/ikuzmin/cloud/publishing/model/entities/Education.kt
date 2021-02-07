@@ -11,7 +11,7 @@ class Education: Serializable {
     @GeneratedValue(strategy = IDENTITY)
     var id: Int? = null
 
-    @Column
+    @Column(nullable = false)
     var title: String? = null
 
 }

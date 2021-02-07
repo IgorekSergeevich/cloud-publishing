@@ -3,13 +3,13 @@ package com.ikuzmin.cloud.publishing.model.entities
 import javax.persistence.*
 
 @Entity
-@Table(name ="photos")
 class Photo {
 
     @Id
+    @Column(length = 20)
     var employeeLogin: String? = null
 
-    @Column
+    @Column(columnDefinition = "MEDIUMBLOB")
     var photo: ByteArray? = null
 
     @MapsId

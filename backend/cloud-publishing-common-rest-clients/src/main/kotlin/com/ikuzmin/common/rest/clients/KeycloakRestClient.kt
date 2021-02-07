@@ -1,6 +1,8 @@
 package com.ikuzmin.common.rest.clients
 
 import com.ikuzmin.cloud.publishing.model.entities.KeycloakUser
+import org.springframework.http.ResponseEntity
+import org.springframework.web.client.postForEntity
 
 class KeycloakRestClient: AbstractRestClient() {
 
@@ -13,8 +15,8 @@ class KeycloakRestClient: AbstractRestClient() {
         getUsersUrl = "${url}/users"
     }
 
-    fun createEmployeeAccount(keycloakUser: KeycloakUser) {
-        restTemplate?.postForEntity(createEmployeeAccountUrl, keycloakUser, String::class.java)
+    fun createEmployeeAccount(keycloakUser: KeycloakUser): ResponseEntity<Any>? {
+        return restTemplate?.postForEntity(createEmployeeAccountUrl, keycloakUser, Any::class)
     }
 
     fun getUsers() =

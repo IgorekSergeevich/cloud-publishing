@@ -9,6 +9,9 @@ import { EmployeePage } from "./components/pages/employees/EmployeePage.jsx";
 import { connect } from "react-redux";
 import { initializeApp } from "./redux/ducks/app"
 import { AppPreloader } from "./components/commons/AppPreloader.jsx";
+import { PublicRoute } from "./components/routes/PublicRoute.jsx";
+import { HomePage } from "./components/pages/home/HomePage.jsx";
+import { GuestPage } from "./components/pages/guest/GuestPage.jsx";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,8 +39,10 @@ const App = ({ isInitialized, initializeApp }) => {
                     <MainLayout>
                         <Paper className={cl.paper}>
                             <Switch>
+                                <PrivateRoute path="/home" component={HomePage} />
                                 <PrivateRoute path="/employees" component={EmployeePage} />
                                 <PrivateRoute path="/articles" component={Articles} />
+                                <PublicRoute path="/" component={GuestPage} />
                             </Switch>
                         </Paper>
                     </MainLayout>)}

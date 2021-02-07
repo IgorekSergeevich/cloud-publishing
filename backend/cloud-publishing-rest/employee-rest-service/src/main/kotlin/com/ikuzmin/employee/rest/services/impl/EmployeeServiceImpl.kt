@@ -3,7 +3,6 @@ package com.ikuzmin.employee.rest.services.impl
 import com.ikuzmin.cloud.publishing.model.dto.ProfileDto
 import com.ikuzmin.cloud.publishing.model.dto.ShortProfileDto
 import com.ikuzmin.cloud.publishing.model.entities.Education
-import com.ikuzmin.cloud.publishing.model.entities.KeycloakUser.Credential
 import com.ikuzmin.cloud.publishing.model.entities.Profile
 import com.ikuzmin.common.rest.clients.KeycloakRestClient
 import com.ikuzmin.employee.rest.dao.EducationDao
@@ -13,7 +12,6 @@ import com.ikuzmin.employee.rest.mappers.ProfileToShortProfileMapper
 import com.ikuzmin.employee.rest.mappers.UserAndProfileMapper
 import com.ikuzmin.employee.rest.services.EmployeeService
 import com.ikuzmin.employee.rest.services.MailService
-import com.ikuzmin.employee.rest.services.PasswordGeneratorService
 import org.keycloak.KeycloakPrincipal
 import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken
 import org.springframework.stereotype.Service
@@ -30,8 +28,8 @@ class EmployeeServiceImpl constructor(
     val shortProfileMapper: ProfileToShortProfileMapper,
     val educationDao: EducationDao,
     val photoDao: PhotoDao,
-    val passwordGeneratorService: PasswordGeneratorService,
-    val mailService: MailService
+    val mailService: MailService,
+    val keycloakServiceClient: KeycloakServiceClient
 ) : EmployeeService {
 
     override fun getEmployeesProfiles(): List<ProfileDto> {
@@ -53,17 +51,7 @@ class EmployeeServiceImpl constructor(
     }
 
     override fun createEmployee(userProfile: ProfileDto) {
-        val password = passwordGeneratorService.generatePassword()
-
-        val keycloakUser = userAndProfileMapper.convertDtoToUser(userProfile)
-        keycloakUser.credentials = listOf(
-            Credential("password", password))
-
-        keycloakRestClient.createEmployeeAccount(keycloakUser)
-        profileDao.save(
-            userAndProfileMapper.convertDtoToProfile(userProfile))
-
-        mailService.sendGeneratedPassword(password)
+        keycloakServiceClient.createUser(userProfile)
     }
 
     override fun getEducationList(): List<Education> = educationDao.findAll()

@@ -9,6 +9,7 @@ import javax.persistence.*
 class Profile: Serializable {
 
     @Id
+    @Column(length = 20)
     var employeeLogin: String? = null
 
     @Column(nullable = false)
@@ -20,12 +21,12 @@ class Profile: Serializable {
     @Column(nullable = false)
     var address: String? = null
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
     var type: EmployeeType? = null
 
     @ManyToOne
-    @JoinColumn(name = "education_id", nullable = true)
+    @JoinColumn(name = "education_id", nullable = false)
     var education: Education? = null
 
     @Column(nullable = false)

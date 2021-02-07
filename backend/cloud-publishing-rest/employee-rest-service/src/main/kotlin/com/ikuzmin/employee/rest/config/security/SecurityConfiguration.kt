@@ -13,12 +13,6 @@ import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper
 import org.springframework.security.web.authentication.session.NullAuthenticatedSessionStrategy
 import org.keycloak.adapters.springsecurity.client.KeycloakClientRequestFactory
 import org.passay.PasswordGenerator
-import org.passay.CharacterRule
-
-import org.passay.EnglishCharacterData
-
-
-
 
 
 @KeycloakConfiguration
