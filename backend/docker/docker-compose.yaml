@@ -1,11 +1,34 @@
 version: "3.9"
 
+volumes:
+  mysql_data:
+
 services:
+  mysql:
+    image: mysql:8.0.22
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./keycloak/init-sql-script:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: keycloak
+
   keycloak-11:
     image: jboss/keycloak:11.0.3
-    restart: always
-    ports:
-      - 8180:8080
     environment:
+      - DB_VENDOR=MYSQL
+      - DB_ADDR=mysql
+      - DB_DATABASE=keycloak
+      - DB_USER=keycloak
+      - DB_PASSWORD=keycloak
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=admin
+      - KEYCLOAK_IMPORT=/realm-settings/realm.json
+    volumes:
+      - ./keycloak/realm-settings:/realm-settings
+    ports:
+      - 8180:8080
+    depends_on:
+      - mysql

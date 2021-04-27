@@ -1,0 +1,4 @@
+rootProject.name = 'cloud-publishing'
+include ':cloud-publishing-rest:employee-rest-service'
+include ':cloud-publishing-model'
+include ':cloud-publishing-common-rest-clients'

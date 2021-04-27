@@ -1,0 +1,6 @@
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.passay:passay:1.6.0'
+}
+
+description = 'employee-rest-service'

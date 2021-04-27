@@ -1,0 +1,6 @@
+dependencies {
+    implementation 'javax.persistence:javax.persistence-api'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations'
+}
+
+description = 'cloud-publishing-model'
