@@ -1,6 +1,20 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm'
+}
+
 dependencies {
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     implementation 'javax.persistence:javax.persistence-api'
     implementation 'com.fasterxml.jackson.core:jackson-annotations'
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "$jvmTargetVersion"
+    }
 }
 
 description = 'cloud-publishing-model'

@@ -1,4 +1,19 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm'
+    id 'org.jetbrains.kotlin.plugin.spring'
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "$jvmTargetVersion"
+    }
+}
+
 dependencies {
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     implementation 'org.springframework:spring-context'
     implementation 'org.springframework:spring-web'
     implementation project(':cloud-publishing-model')

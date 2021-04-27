@@ -1,13 +1,21 @@
-plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.4.21' apply false
-    id 'org.jetbrains.kotlin.plugin.spring' version '1.4.21' apply false
-    id 'org.jetbrains.kotlin.kapt' version '1.4.21' apply false
-    id 'org.springframework.boot' version '2.3.5.RELEASE' apply false
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE' apply false
-}
+buildscript {
 
-ext {
-    springVersion = "2.3.5.RELEASE"
+    ext {
+        springBootVersion = '2.3.5.RELEASE'
+        kotlinVersion = '1.4.21'
+        jvmTargetVersion = '1.8'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.11.RELEASE"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion"
+    }
 }
 
 allprojects {
@@ -19,28 +27,14 @@ allprojects {
 }
 
 subprojects {
-    apply plugin: 'org.jetbrains.kotlin.jvm'
-    apply plugin: 'org.jetbrains.kotlin.plugin.spring'
     apply plugin: 'io.spring.dependency-management'
-
-    compileKotlin {
-        kotlinOptions {
-            jvmTarget = '1.8'
-        }
-    }
 
     dependencyManagement {
         imports {
             mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES) {
-                bomProperty 'kotlin.version', '1.4.21'
+                bomProperty 'kotlin.version', "$kotlinVersion"
             }
         }
     }
 
-    dependencies {
-        compileOnly 'org.projectlombok:lombok'
-        annotationProcessor 'org.projectlombok:lombok'
-        implementation 'org.jetbrains.kotlin:kotlin-reflect'
-        implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
-    }
 }
