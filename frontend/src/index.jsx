@@ -19,3 +19,6 @@ const Application = (
 
 ReactDOM.render(Application, document.getElementById("root"));
 
+if (module.hot) {
+    module.hot.accept()
+}

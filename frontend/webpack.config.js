@@ -1,23 +1,63 @@
+const path = require('path')
 
-//const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+
+const isDev = process.env.NODE_MODE === 'development'
+
+const getFileName = (ext) => {
+    let filename;
+    if (isDev) {
+        filename = `[name].${ext}`
+    } else {
+        filename = `[name].[hash].${ext}`
+    }
+    return filename
+}
+
+const optimize = () => {
+    const config = {
+        splitChunks: {
+            chunks: 'all'
+        }
+    }
+
+    if (!isDev) {
+        config.minimizer = [
+            new OptimizeCssAssetsPlugin(),
+            new TerserPlugin()]
+    }
+    return config
+}
 
 module.exports = {
-    devtool: 'source-map',
-    entry: "./src/index.jsx",
-    output: {
-        path: __dirname + "/dist",
-        filename: "index.js",
-        publicPath: "/public"
+    context: path.resolve(__dirname, 'src'),
+    entry: {
+        main: './index.jsx'
     },
+
+    output: {
+        filename: getFileName('js'),
+        path: path.resolve(__dirname, 'dist')
+    },
+
+    optimization: optimize(),
+    devtool: isDev ? 'source-map' : false,
+    
     plugins: [
-        new CopyPlugin({
-            patterns: [
-                { from: 'public' },
-            ]
+        new HtmlWebpackPlugin({
+            template: './index.html',
+            favicon: './assets/favicon.ico',
         }),
+        new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename: getFileName('css')
+        })
     ],
-    //plugins: [new MiniCssExtractPlugin({filename : "style.css"})],
     module: {
         rules: [
             {
@@ -29,8 +69,7 @@ module.exports = {
                 test: /\.module\.css$/,
                 exclude: /node_modules/,
                 use: [
-                    //MiniCssExtractPlugin.loader,
-                    "style-loader",
+                    MiniCssExtractPlugin.loader,
                     {
                         loader: "css-loader",
                         options: {
@@ -43,8 +82,7 @@ module.exports = {
                 test: /\.css$/,
                 exclude: /node_modules|\.module\.css$/,
                 use: [
-                    //MiniCssExtractPlugin.loader,       
-                    "style-loader",
+                    MiniCssExtractPlugin.loader,
                     "css-loader"
                 ],
             },
@@ -54,16 +92,15 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.svg$/,
-                loader: 'svg-url-loader'
+                test: /\.(svg|png|jpg|gif)$/,
+                loader: 'file-loader'
             }
         ]
     },
     devServer: {
         historyApiFallback: true,
-        contentBase: __dirname + "/dist",
+        contentBase: path.relative(__dirname, 'dist'),
         port: 9000,
-        publicPath: "/script",
-        watchContentBase: true
+        hot: isDev
     }
 };
