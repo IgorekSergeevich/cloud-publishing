@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "cross-env NODE_MODE=development webpack --mode=development",
     "prod": "cross-env NODE_MODE=production webpack --mode=production",
-    "start": "cross-env NODE_MODE=development webpack-dev-server --mode=development --open"
+    "start": "cross-env NODE_MODE=development webpack-dev-server --mode=development --open",
+    "start-docker": "cross-env NODE_MODE=development webpack-dev-server --host=0.0.0.0 --mode=development --open"
   },
   "author": "Igor Kuzmin",
   "license": "ISC",
